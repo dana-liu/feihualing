@@ -48,9 +48,7 @@
 
     <view class="progress-dots">
       <block wx:for="{{totalRounds}}" wx:key="index">
-        <view class="dot {{completedRounds.includes(index + 1) ? 'completed' : ''}}">
-          ✓
-        </view>
+        <view class="dot {{roundStatus[index] ? 'completed' : ''}}">✓</view>
       </block>
     </view>
 

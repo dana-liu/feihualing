@@ -15,7 +15,7 @@ Page({
     usedPoemIds: [],
     showSuccessAnimation: false,
     successMessage: '',
-    completedRounds: []
+    roundStatus: {}
   },
 
   onLoad() {
@@ -72,7 +72,7 @@ Page({
       isCorrect: false,
       matchedPoetry: '',
       usedPoemIds: [],
-      completedRounds: []
+      roundStatus: {}
     });
   },
 
@@ -140,15 +140,14 @@ Page({
       const randomMsg = encouragements[Math.floor(Math.random() * encouragements.length)];
 
       // 显示动效
-      const newCompletedRounds = [...this.data.completedRounds, currentRound];
-      console.log('Answer correct, currentRound:', currentRound, 'newCompletedRounds:', newCompletedRounds);
+      const newRoundStatus = {...this.data.roundStatus};
+      newRoundStatus[currentRound - 1] = true;
       this.setData({
         showSuccessAnimation: true,
         successMessage: randomMsg,
         matchedPoetry: result.poem.content,
-        completedRounds: newCompletedRounds
+        roundStatus: newRoundStatus
       });
-      console.log('After setData, completedRounds:', this.data.completedRounds);
 
       // 延迟后进入下一轮
       setTimeout(() => {
@@ -193,7 +192,7 @@ Page({
       isCorrect: false,
       matchedPoetry: '',
       usedPoemIds: [],
-      completedRounds: []
+      roundStatus: {}
     });
   },
 
