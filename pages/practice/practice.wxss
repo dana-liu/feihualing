@@ -89,11 +89,11 @@
 }
 
 .voice-btn {
-  width: 40rpx;
-  height: 40rpx;
+  width: 32rpx;
+  height: 64rpx;
   background: #e6b85c;
   border: none;
-  border-radius: 20rpx;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,7 +103,7 @@
 }
 
 .voice-icon {
-  font-size: 18rpx;
+  font-size: 26rpx;
 }
 
 .input-hint {
