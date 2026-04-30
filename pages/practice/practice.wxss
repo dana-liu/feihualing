@@ -36,9 +36,9 @@
   display: inline-block;
   background: linear-gradient(135deg, #e6b85c, #d4a056);
   color: #1a1a2e;
-  font-size: 96rpx;
+  font-size: 120rpx;
   font-family: 'STKaiti', '楷体', serif;
-  padding: 40rpx 100rpx;
+  padding: 50rpx 120rpx;
   border-radius: 32rpx;
   font-weight: bold;
 }
@@ -268,7 +268,7 @@
 }
 
 .keyword-value {
-  font-size: 36rpx;
+  font-size: 56rpx;
   color: #e6b85c;
   font-family: 'STKaiti', '楷体', serif;
   font-weight: bold;
