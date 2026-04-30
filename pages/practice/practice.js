@@ -139,39 +139,43 @@ Page({
       ];
       const randomMsg = encouragements[Math.floor(Math.random() * encouragements.length)];
 
-      // 显示动效
-      const newRoundStatus = {...this.data.roundStatus};
-      newRoundStatus[currentRound - 1] = true;
-      this.setData({
-        showSuccessAnimation: true,
-        successMessage: randomMsg,
-        matchedPoetry: result.poem.content,
-        roundStatus: newRoundStatus
-      });
-
-      // 延迟后进入下一轮
+      // 延迟后处理
       setTimeout(() => {
+        const newRoundStatus = {...this.data.roundStatus};
+        newRoundStatus[currentRound - 1] = true;
+
         if (currentRound >= totalRounds) {
+          // 最后一轮，只显示Toast
           wx.showToast({
-            title: '恭喜完成练习！',
+            title: randomMsg + '恭喜完成本轮！',
             icon: 'success'
           });
           setTimeout(() => {
             this.changeKeyword();
-          }, 1500);
+          }, 2000);
         } else {
+          // 非最后一轮，显示动效后进入下一轮
           this.setData({
-            currentRound: currentRound + 1,
-            inputText: '',
-            showResult: false,
-            isCorrect: false,
-            matchedPoetry: '',
-            usedPoemIds: newUsedPoemIds,
-            showSuccessAnimation: false,
-            successMessage: ''
+            showSuccessAnimation: true,
+            successMessage: randomMsg,
+            matchedPoetry: result.poem.content,
+            roundStatus: newRoundStatus
           });
+          setTimeout(() => {
+            this.setData({
+              currentRound: currentRound + 1,
+              inputText: '',
+              showResult: false,
+              isCorrect: false,
+              matchedPoetry: '',
+              usedPoemIds: newUsedPoemIds,
+              showSuccessAnimation: false,
+              successMessage: '',
+              roundStatus: newRoundStatus
+            });
+          }, 1500);
         }
-      }, 1500);
+      }, 300);
     } else {
       this.setData({
         showResult: true,
