@@ -90,7 +90,24 @@ Page({
 
   submitAnswer() {
     const { inputText, keyword, currentRound, totalRounds, usedPoemIds } = this.data;
-    if (!inputText) return;
+
+    if (!inputText || inputText.trim().length === 0) {
+      wx.showToast({
+        title: '请输入诗句',
+        icon: 'none'
+      });
+      return;
+    }
+
+    // 检查长度是否满足连续两句诗的要求
+    const normalized = inputText.replace(/[，。！？、；：""''（）【】]/g, '').trim();
+    if (normalized.length < 8) {
+      wx.showToast({
+        title: '请输入连续的两句诗',
+        icon: 'none'
+      });
+      return;
+    }
 
     const result = poetry.checkAnswer(inputText, keyword);
 
