@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="header">
+    <text class="title">飞花令</text>
+    <text class="subtitle">传承千年的诗词雅趣</text>
+  </view>
+
+  <view class="mode-list">
+    <view class="mode-card" bindtap="goToPractice">
+      <view class="mode-icon" style="background: linear-gradient(135deg, #e6b85c, #d4a056);">
+        <text class="icon-text">🎤</text>
+      </view>
+      <view class="mode-info">
+        <text class="mode-title">个人练习</text>
+        <text class="mode-desc">语音/打字输入，背诵检测</text>
+      </view>
+    </view>
+
+    <view class="mode-card" bindtap="goToMemorize">
+      <view class="mode-icon" style="background: linear-gradient(135deg, #6b8cce, #5a7ab8);">
+        <text class="icon-text">📖</text>
+      </view>
+      <view class="mode-info">
+        <text class="mode-title">背诗模式</text>
+        <text class="mode-desc">浏览记忆，系统展示诗句</text>
+      </view>
+    </view>
+
+    <view class="mode-card" bindtap="goToLibrary">
+      <view class="mode-icon" style="background: linear-gradient(135deg, #7eb89b, #6aa584);">
+        <text class="icon-text">📚</text>
+      </view>
+      <view class="mode-info">
+        <text class="mode-title">诗词库</text>
+        <text class="mode-desc">唐诗三百首 · 宋词精选</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text class="quote">春风得意马蹄疾，一日看尽长安花</text>
+  </view>
+</view>
