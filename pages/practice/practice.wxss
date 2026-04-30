@@ -1,0 +1,176 @@
+.container {
+  padding: 30rpx 40rpx;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.back {
+  font-size: 32rpx;
+  color: #f0e6d3;
+}
+
+.progress {
+  font-size: 28rpx;
+  color: #e6b85c;
+}
+
+.keyword-section {
+  text-align: center;
+  margin-bottom: 50rpx;
+}
+
+.keyword-label {
+  font-size: 28rpx;
+  color: #8b8b8b;
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.keyword-box {
+  display: inline-block;
+  background: linear-gradient(135deg, #e6b85c, #d4a056);
+  color: #1a1a2e;
+  font-size: 96rpx;
+  font-family: 'STKaiti', '楷体', serif;
+  padding: 40rpx 100rpx;
+  border-radius: 32rpx;
+  font-weight: bold;
+}
+
+.progress-dots {
+  display: flex;
+  gap: 12rpx;
+  justify-content: center;
+  margin-bottom: 50rpx;
+}
+
+.dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dot.active {
+  background: #e6b85c;
+}
+
+.input-section {
+  margin-bottom: 40rpx;
+}
+
+.input-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 48rpx;
+  padding: 16rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.poetry-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 20rpx 32rpx;
+  color: #f0e6d3;
+  font-size: 30rpx;
+}
+
+.input-placeholder {
+  color: #5a5a6e;
+}
+
+.voice-btn {
+  width: 88rpx;
+  height: 88rpx;
+  background: #e6b85c;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.voice-icon {
+  font-size: 40rpx;
+}
+
+.input-hint {
+  display: block;
+  text-align: center;
+  font-size: 26rpx;
+  color: #5a5a6e;
+  margin-top: 20rpx;
+}
+
+.result-section {
+  margin-bottom: 40rpx;
+}
+
+.result-box {
+  border-radius: 24rpx;
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.result-box.correct {
+  background: rgba(126, 184, 155, 0.2);
+  border: 1px solid #7eb89b;
+}
+
+.result-box.wrong {
+  background: rgba(206, 107, 107, 0.2);
+  border: 1px solid #ce6b6b;
+}
+
+.result-icon {
+  font-size: 40rpx;
+}
+
+.result-box.correct .result-icon {
+  color: #7eb89b;
+}
+
+.result-box.wrong .result-icon {
+  color: #ce6b6b;
+}
+
+.result-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #f0e6d3;
+  display: block;
+}
+
+.result-poetry {
+  font-size: 26rpx;
+  color: #a0d4be;
+  margin-top: 8rpx;
+  display: block;
+  font-family: 'STKaiti', '楷体', serif;
+}
+
+.action-section {
+  text-align: center;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #e6b85c, #d4a056);
+  color: #1a1a2e;
+  border: none;
+  padding: 32rpx 120rpx;
+  border-radius: 60rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
