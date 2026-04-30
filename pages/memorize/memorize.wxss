@@ -40,6 +40,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 48rpx;
   padding: 16rpx 24rpx;
+  min-height: 120rpx;
 }
 
 .keyword-input {
@@ -48,9 +49,11 @@
   border: none;
   padding: 20rpx;
   color: #f0e6d3;
-  font-size: 48rpx;
+  font-size: 64rpx;
   text-align: center;
   font-family: 'STKaiti', '楷体', serif;
+  height: 100rpx;
+  line-height: 100rpx;
 }
 
 .keyword-input::placeholder {
