@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="header">
+    <text class="back" bindtap="goBack">← 返回</text>
+    <text class="progress">{{currentIndex + 1}}/{{totalCount}} 首</text>
+  </view>
+
+  <view class="poetry-card">
+    <view class="poetry-content">
+      <block wx:for="{{currentPoem.sentences}}" wx:key="index">
+        <text class="poetry-line">{{item}}</text>
+      </block>
+    </view>
+
+    <view class="poetry-info">
+      <text class="poetry-title">《{{currentPoem.title}}》</text>
+      <text class="poetry-author">{{currentPoem.dynasty}} · {{currentPoem.author}}</text>
+    </view>
+  </view>
+
+  <view class="action-btns">
+    <button class="nav-btn prev" bindtap="prevPoem" disabled="{{currentIndex === 0}}">← 上一首</button>
+    <button class="nav-btn next" bindtap="nextPoem">下一首 →</button>
+  </view>
+
+  <view class="progress-bar">
+    <text class="progress-title">{{currentPoem.title}}</text>
+    <text class="progress-next">{{nextTitle}}</text>
+    <view class="bar-track">
+      <view class="bar-fill" style="width: {{progress}}%;"></view>
+    </view>
+  </view>
+</view>
