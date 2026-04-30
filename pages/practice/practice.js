@@ -11,7 +11,8 @@ Page({
     inputText: '',
     showResult: false,
     isCorrect: false,
-    matchedPoetry: ''
+    matchedPoetry: '',
+    usedPoemIds: []
   },
 
   onLoad() {
@@ -66,7 +67,8 @@ Page({
       inputText: '',
       showResult: false,
       isCorrect: false,
-      matchedPoetry: ''
+      matchedPoetry: '',
+      usedPoemIds: []
     });
   },
 
@@ -85,15 +87,26 @@ Page({
   },
 
   submitAnswer() {
-    const { inputText, keyword, currentRound, totalRounds } = this.data;
+    const { inputText, keyword, currentRound, totalRounds, usedPoemIds } = this.data;
     if (!inputText) return;
 
     const result = poetry.checkAnswer(inputText, keyword);
 
     if (result.correct) {
+      // 检查是否已经答过这首诗
+      if (usedPoemIds.includes(result.poem.id)) {
+        wx.showToast({
+          title: '这句诗已经答过了，换一句试试',
+          icon: 'none'
+        });
+        return;
+      }
+
+      // 记录已使用的诗词
+      const newUsedPoemIds = [...usedPoemIds, result.poem.id];
+
       // 答对了，进入下一轮
       if (currentRound >= totalRounds) {
-        // 完成了所有轮次
         wx.showToast({
           title: '恭喜完成练习！',
           icon: 'success'
@@ -107,7 +120,8 @@ Page({
           inputText: '',
           showResult: false,
           isCorrect: false,
-          matchedPoetry: ''
+          matchedPoetry: '',
+          usedPoemIds: newUsedPoemIds
         });
       }
     } else {
@@ -128,7 +142,8 @@ Page({
       inputText: '',
       showResult: false,
       isCorrect: false,
-      matchedPoetry: ''
+      matchedPoetry: '',
+      usedPoemIds: []
     });
   },
 
