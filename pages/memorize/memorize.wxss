@@ -144,13 +144,13 @@
 
 .poetry-title {
   display: block;
-  font-size: 28rpx;
+  font-size: 36rpx;
   color: #8b8b8b;
   margin-bottom: 8rpx;
 }
 
 .poetry-author {
-  font-size: 26rpx;
+  font-size: 30rpx;
   color: #6b8cce;
 }
 
@@ -217,12 +217,12 @@
 }
 
 .keyword-label {
-  font-size: 28rpx;
+  font-size: 36rpx;
   color: #8b8b8b;
 }
 
 .keyword-value {
-  font-size: 36rpx;
+  font-size: 56rpx;
   color: #e6b85c;
   font-family: 'STKaiti', '楷体', serif;
   font-weight: bold;
