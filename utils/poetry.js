@@ -7,28 +7,26 @@ function findPoemsWithKeyword(keyword) {
 }
 
 function checkAnswer(inputText, keyword) {
-  const normalizedInput = inputText.replace(/[，。！？、；：""''（）]/g, '').trim();
+  // 移除所有标点符号
+  const normalizedInput = inputText.replace(/[，。！？、；：""''（）【】]/g, '').trim();
   const poemsWithKeyword = findPoemsWithKeyword(keyword);
 
-  // 输入必须是4-20个字之间
-  if (normalizedInput.length < 4 || normalizedInput.length > 20) {
+  // 必须是连续的两句诗（8-30个字）
+  if (normalizedInput.length < 8 || normalizedInput.length > 30) {
     return { correct: false, poem: null };
   }
 
-  // 先尝试整体匹配（用户输入可能包含多个句子）
   for (const poem of poemsWithKeyword) {
-    const pureContent = poem.content.replace(/[，。！？、；：""''（）]/g, '').trim();
-    if (pureContent === normalizedInput) {
-      return { correct: true, poem };
-    }
-  }
+    const sentences = poem.content.split(/[，。！？]/).filter(s => s.trim());
 
-  // 再尝试单句匹配
-  for (const poem of poemsWithKeyword) {
-    const originalSentences = poem.content.split(/[，。！？]/).filter(s => s.trim());
-    for (const sentence of originalSentences) {
-      const pureSentence = sentence.replace(/[，。！？、；：""''（）]/g, '').trim();
-      if (pureSentence === normalizedInput) {
+    // 检查是否有连续两句匹配用户的输入
+    for (let i = 0; i < sentences.length - 1; i++) {
+      const sentence1 = sentences[i].replace(/[，。！？、；：""''（）【】]/g, '').trim();
+      const sentence2 = sentences[i + 1].replace(/[，。！？、；：""''（）【】]/g, '').trim();
+      const combinedText = sentence1 + sentence2;
+
+      // 用户输入必须恰好等于连续两句的合并
+      if (combinedText === normalizedInput) {
         return { correct: true, poem };
       }
     }
