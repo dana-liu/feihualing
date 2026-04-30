@@ -140,12 +140,15 @@ Page({
       const randomMsg = encouragements[Math.floor(Math.random() * encouragements.length)];
 
       // 显示动效
+      const newCompletedRounds = [...this.data.completedRounds, currentRound];
+      console.log('Answer correct, currentRound:', currentRound, 'newCompletedRounds:', newCompletedRounds);
       this.setData({
         showSuccessAnimation: true,
         successMessage: randomMsg,
         matchedPoetry: result.poem.content,
-        completedRounds: [...this.data.completedRounds, currentRound]
+        completedRounds: newCompletedRounds
       });
+      console.log('After setData, completedRounds:', this.data.completedRounds);
 
       // 延迟后进入下一轮
       setTimeout(() => {
