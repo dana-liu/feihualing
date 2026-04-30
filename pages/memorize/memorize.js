@@ -55,7 +55,15 @@ Page({
     poemsWithKeyword = poemsWithKeyword.sort(() => Math.random() - 0.5);
 
     poemsWithKeyword.forEach(p => {
-      p.sentences = p.content.split(/[，。！？]/).filter(s => s.trim());
+      // 拆分句子并标记每个字符是否是关键字
+      const sentences = p.content.split(/[，。！？]/).filter(s => s.trim());
+      p.sentences = sentences.map(sentence => ({
+        text: sentence,
+        chars: sentence.split('').map(char => ({
+          char,
+          isKeyword: char === inputKeyword
+        }))
+      });
     });
 
     this.setData({

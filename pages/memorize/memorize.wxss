@@ -131,6 +131,11 @@
   font-family: 'STKaiti', '楷体', serif;
 }
 
+.keyword-char {
+  color: #e6b85c;
+  font-weight: bold;
+}
+
 .poetry-info {
   text-align: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);

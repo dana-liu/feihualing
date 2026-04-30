@@ -47,7 +47,9 @@
     <view class="poetry-card">
       <view class="poetry-content">
         <block wx:for="{{currentPoem.sentences}}" wx:key="index">
-          <text class="poetry-line">{{item}}</text>
+          <view class="poetry-line">
+            <text wx:for="{{item.chars}}" wx:for-item="charObj" class="{{charObj.isKeyword ? 'keyword-char' : ''}}">{{charObj.char}}</text>
+          </view>
         </block>
       </view>
 
