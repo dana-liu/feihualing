@@ -1,0 +1,76 @@
+.container {
+  padding: 30rpx 40rpx;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.back {
+  font-size: 32rpx;
+  color: #f0e6d3;
+}
+
+.count {
+  font-size: 28rpx;
+  color: #8b8b8b;
+}
+
+.search-bar {
+  margin-bottom: 30rpx;
+}
+
+.search-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 32rpx;
+  padding: 24rpx 32rpx;
+  color: #f0e6d3;
+  font-size: 28rpx;
+}
+
+.search-input::placeholder {
+  color: #5a5a6e;
+}
+
+.poem-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.poem-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 24rpx;
+  padding: 30rpx;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.poem-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.poem-title {
+  font-size: 30rpx;
+  color: #f0e6d3;
+  font-weight: bold;
+}
+
+.poem-author {
+  font-size: 24rpx;
+  color: #6b8cce;
+}
+
+.poem-preview {
+  font-size: 26rpx;
+  color: #8b8b8b;
+  line-height: 1.6;
+  font-family: 'STKaiti', '楷体', serif;
+}

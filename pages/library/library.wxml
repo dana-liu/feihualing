@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="header">
+    <text class="back" bindtap="goBack">← 返回</text>
+    <text class="count">共 {{poems.length}} 首</text>
+  </view>
+
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索诗词、作者..." bindinput="onSearch" value="{{searchText}}"/>
+  </view>
+
+  <view class="poem-list">
+    <view class="poem-item" wx:for="{{filteredPoems}}" wx:key="id">
+      <view class="poem-header">
+        <text class="poem-title">《{{item.title}}》</text>
+        <text class="poem-author">{{item.dynasty}} · {{item.author}}</text>
+      </view>
+      <text class="poem-preview">{{item.content}}</text>
+    </view>
+  </view>
+</view>
