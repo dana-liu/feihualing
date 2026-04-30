@@ -1,0 +1,11 @@
+<view class="poetry-card">
+  <view class="poetry-content">
+    <block wx:for="{{poem.sentences}}" wx:key="index">
+      <text class="poetry-line">{{item}}</text>
+    </block>
+  </view>
+  <view class="poetry-info">
+    <text class="poetry-title">《{{poem.title}}》</text>
+    <text class="poetry-author">{{poem.dynasty}} · {{poem.author}}</text>
+  </view>
+</view>
