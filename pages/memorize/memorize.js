@@ -55,14 +55,25 @@ Page({
     poemsWithKeyword = poemsWithKeyword.sort(() => Math.random() - 0.5);
 
     poemsWithKeyword.forEach(p => {
-      const sentences = p.content.split(/[，。！？]/).filter(s => s.trim());
-      p.sentences = sentences.map(sentence => ({
-        text: sentence,
-        chars: sentence.split('').map(char => ({
-          char,
-          isKeyword: char === inputKeyword
-        }))
-      }));
+      // 保留标点符号，逐字符处理
+      const sentences = [];
+      let currentSentence = [];
+      const punctuation = /[，。！？]/;
+      for (let i = 0; i < p.content.length; i++) {
+        const char = p.content[i];
+        if (punctuation.test(char)) {
+          // 标点符号单独作为一个元素
+          currentSentence.push({ char: char, isKeyword: false, isPunctuation: true });
+          sentences.push(currentSentence);
+          currentSentence = [];
+        } else {
+          currentSentence.push({ char: char, isKeyword: char === inputKeyword });
+        }
+      }
+      if (currentSentence.length > 0) {
+        sentences.push(currentSentence);
+      }
+      p.sentences = sentences;
     });
 
     this.setData({

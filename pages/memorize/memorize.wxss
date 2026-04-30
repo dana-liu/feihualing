@@ -136,6 +136,15 @@
   font-weight: bold;
 }
 
+.punctuation {
+  color: #8b8b8b;
+}
+
+.poetry-sentence {
+  display: block;
+  line-height: 2;
+}
+
 .poetry-info {
   text-align: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);

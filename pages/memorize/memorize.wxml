@@ -46,11 +46,9 @@
 
     <view class="poetry-card">
       <view class="poetry-content">
-        <block wx:for="{{currentPoem.sentences}}" wx:key="index">
-          <view class="poetry-line">
-            <text wx:for="{{item.chars}}" wx:for-item="charObj" class="{{charObj.isKeyword ? 'keyword-char' : ''}}">{{charObj.char}}</text>
-          </view>
-        </block>
+        <view wx:for="{{currentPoem.sentences}}" wx:key="index" class="poetry-sentence">
+          <text wx:for="{{item}}" wx:for-item="charObj" wx:for-index="charIdx" class="{{charObj.isKeyword ? 'keyword-char' : ''}} {{charObj.isPunctuation ? 'punctuation' : ''}}">{{charObj.char}}</text>
+        </view>
       </view>
 
       <view class="poetry-info">
