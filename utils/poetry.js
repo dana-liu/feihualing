@@ -15,14 +15,19 @@ function checkAnswer(inputText, keyword) {
     return { correct: false, poem: null };
   }
 
+  // 先尝试整体匹配（用户输入可能包含多个句子）
   for (const poem of poemsWithKeyword) {
-    // 获取原始句子的标点版本，用于对比
+    const pureContent = poem.content.replace(/[，。！？、；：""''（）]/g, '').trim();
+    if (pureContent === normalizedInput) {
+      return { correct: true, poem };
+    }
+  }
+
+  // 再尝试单句匹配
+  for (const poem of poemsWithKeyword) {
     const originalSentences = poem.content.split(/[，。！？]/).filter(s => s.trim());
     for (const sentence of originalSentences) {
-      // 句子的纯文字版本
       const pureSentence = sentence.replace(/[，。！？、；：""''（）]/g, '').trim();
-
-      // 严格匹配：用户输入必须恰好等于某个完整句子
       if (pureSentence === normalizedInput) {
         return { correct: true, poem };
       }
