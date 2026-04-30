@@ -85,17 +85,31 @@ Page({
   },
 
   submitAnswer() {
-    const { inputText, keyword, filteredPoems } = this.data;
+    const { inputText, keyword, currentRound, totalRounds } = this.data;
     if (!inputText) return;
 
     const result = poetry.checkAnswer(inputText, keyword);
 
     if (result.correct) {
-      this.setData({
-        showResult: true,
-        isCorrect: true,
-        matchedPoetry: result.poem.content
-      });
+      // 答对了，进入下一轮
+      if (currentRound >= totalRounds) {
+        // 完成了所有轮次
+        wx.showToast({
+          title: '恭喜完成练习！',
+          icon: 'success'
+        });
+        setTimeout(() => {
+          this.changeKeyword();
+        }, 1500);
+      } else {
+        this.setData({
+          currentRound: currentRound + 1,
+          inputText: '',
+          showResult: false,
+          isCorrect: false,
+          matchedPoetry: ''
+        });
+      }
     } else {
       this.setData({
         showResult: true,
