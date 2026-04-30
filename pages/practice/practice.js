@@ -14,7 +14,8 @@ Page({
     matchedPoetry: '',
     usedPoemIds: [],
     showSuccessAnimation: false,
-    successMessage: ''
+    successMessage: '',
+    completedRounds: []
   },
 
   onLoad() {
@@ -70,7 +71,8 @@ Page({
       showResult: false,
       isCorrect: false,
       matchedPoetry: '',
-      usedPoemIds: []
+      usedPoemIds: [],
+      completedRounds: []
     });
   },
 
@@ -141,7 +143,8 @@ Page({
       this.setData({
         showSuccessAnimation: true,
         successMessage: randomMsg,
-        matchedPoetry: result.poem.content
+        matchedPoetry: result.poem.content,
+        completedRounds: [...this.data.completedRounds, currentRound]
       });
 
       // 延迟后进入下一轮
@@ -163,7 +166,8 @@ Page({
             matchedPoetry: '',
             usedPoemIds: newUsedPoemIds,
             showSuccessAnimation: false,
-            successMessage: ''
+            successMessage: '',
+            completedRounds: [...this.data.completedRounds, currentRound]
           });
         }
       }, 1500);
@@ -186,7 +190,8 @@ Page({
       showResult: false,
       isCorrect: false,
       matchedPoetry: '',
-      usedPoemIds: []
+      usedPoemIds: [],
+      completedRounds: []
     });
   },
 
