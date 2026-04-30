@@ -12,7 +12,9 @@ Page({
     showResult: false,
     isCorrect: false,
     matchedPoetry: '',
-    usedPoemIds: []
+    usedPoemIds: [],
+    showSuccessAnimation: false,
+    successMessage: ''
   },
 
   onLoad() {
@@ -105,25 +107,49 @@ Page({
       // 记录已使用的诗词
       const newUsedPoemIds = [...usedPoemIds, result.poem.id];
 
-      // 答对了，进入下一轮
-      if (currentRound >= totalRounds) {
-        wx.showToast({
-          title: '恭喜完成练习！',
-          icon: 'success'
-        });
-        setTimeout(() => {
-          this.changeKeyword();
-        }, 1500);
-      } else {
-        this.setData({
-          currentRound: currentRound + 1,
-          inputText: '',
-          showResult: false,
-          isCorrect: false,
-          matchedPoetry: '',
-          usedPoemIds: newUsedPoemIds
-        });
-      }
+      // 鼓励语列表
+      const encouragements = [
+        '太棒了！',
+        '诗才横溢！',
+        '妙语连珠！',
+        '才华出众！',
+        '出口成章！',
+        '博学多才！',
+        '诗意盎然！',
+        '词采华美！'
+      ];
+      const randomMsg = encouragements[Math.floor(Math.random() * encouragements.length)];
+
+      // 显示动效
+      this.setData({
+        showSuccessAnimation: true,
+        successMessage: randomMsg,
+        matchedPoetry: result.poem.content
+      });
+
+      // 延迟后进入下一轮
+      setTimeout(() => {
+        if (currentRound >= totalRounds) {
+          wx.showToast({
+            title: '恭喜完成练习！',
+            icon: 'success'
+          });
+          setTimeout(() => {
+            this.changeKeyword();
+          }, 1500);
+        } else {
+          this.setData({
+            currentRound: currentRound + 1,
+            inputText: '',
+            showResult: false,
+            isCorrect: false,
+            matchedPoetry: '',
+            usedPoemIds: newUsedPoemIds,
+            showSuccessAnimation: false,
+            successMessage: ''
+          });
+        }
+      }, 1500);
     } else {
       this.setData({
         showResult: true,

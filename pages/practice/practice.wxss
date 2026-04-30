@@ -279,3 +279,55 @@
   font-size: 28rpx;
   text-align: center;
 }
+
+/* 答对动效 */
+.success-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+  z-index: 100;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.success-content {
+  background: linear-gradient(135deg, #e6b85c, #d4a056);
+  padding: 60rpx 80rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  animation: scaleIn 0.4s ease-out;
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.3);
+}
+
+.success-icon {
+  font-size: 100rpx;
+  animation: bounce 0.6s ease-in-out infinite;
+}
+
+.success-text {
+  font-size: 40rpx;
+  color: #1a1a2e;
+  font-weight: bold;
+  margin-top: 20rpx;
+  font-family: 'STKaiti', '楷体', serif;
+}

@@ -72,6 +72,14 @@
       </view>
     </view>
 
+    <!-- 答对动效 -->
+    <view wx:if="{{showSuccessAnimation}}" class="success-animation">
+      <view class="success-content">
+        <view class="success-icon">🎉</view>
+        <view class="success-text">{{successMessage}}</view>
+      </view>
+    </view>
+
     <view class="action-section">
       <button class="submit-btn" bindtap="submitAnswer" disabled="{{!inputText}}">提交答案</button>
     </view>
