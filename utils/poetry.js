@@ -35,14 +35,23 @@ function checkAnswer(inputText, keyword) {
   return { correct: false, poem: null };
 }
 
+function getAllKeywords() {
+  const keywordSet = new Set();
+  poems.forEach(poem => {
+    poem.keywords.forEach(k => keywordSet.add(k));
+  });
+  return Array.from(keywordSet);
+}
+
 function getRandomKeyword() {
-  const commonKeywords = ['月', '花', '春', '酒', '诗', '风', '雨', '雪', '秋', '江', '山', '水', '日', '云', '鸟', '鱼', '心', '思', '故', '乡'];
-  return commonKeywords[Math.floor(Math.random() * commonKeywords.length)];
+  const allKeywords = getAllKeywords();
+  return allKeywords[Math.floor(Math.random() * allKeywords.length)];
 }
 
 module.exports = {
   findPoemsWithKeyword,
   checkAnswer,
   getRandomKeyword,
+  getAllKeywords,
   poems
 };
