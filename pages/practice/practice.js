@@ -1,4 +1,5 @@
 const poetry = require('../../utils/poetry.js');
+const audio = require('../../utils/audio.js');
 
 Page({
   data: {
@@ -115,6 +116,7 @@ Page({
     const result = poetry.checkAnswer(inputText, keyword);
 
     if (result.correct) {
+      audio.playCorrect();
       if (usedPoemIds.includes(result.poem.id)) {
         wx.showToast({
           title: '这句诗已经答过了，换一句试试',
@@ -170,6 +172,7 @@ Page({
         }
       }, 300);
     } else {
+      audio.playWrong();
       this.setData({
         showResult: true,
         isCorrect: false,
