@@ -1,4 +1,4 @@
-const poems = require('../data/poems');
+const poems = require('../data/poems.js');
 
 function findPoemsWithKeyword(keyword) {
   return poems.filter(poem =>
