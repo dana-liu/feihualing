@@ -143,6 +143,7 @@
 .poetry-sentence {
   display: block;
   line-height: 2;
+  letter-spacing: 4rpx;
 }
 
 .poetry-info {
