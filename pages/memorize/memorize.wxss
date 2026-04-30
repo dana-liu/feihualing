@@ -20,6 +20,95 @@
   color: #6b8cce;
 }
 
+/* 关键字输入界面 */
+.keyword-input-view {
+  padding-top: 60rpx;
+}
+
+.input-title {
+  text-align: center;
+  font-size: 36rpx;
+  color: #f0e6d3;
+  margin-bottom: 60rpx;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 48rpx;
+  padding: 16rpx 24rpx;
+}
+
+.keyword-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 20rpx;
+  color: #f0e6d3;
+  font-size: 48rpx;
+  text-align: center;
+  font-family: 'STKaiti', '楷体', serif;
+}
+
+.keyword-input::placeholder {
+  color: #5a5a6e;
+  font-size: 32rpx;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #e6b85c, #d4a056);
+  color: #1a1a2e;
+  border: none;
+  padding: 20rpx 40rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.start-btn[disabled] {
+  background: rgba(255, 255, 255, 0.1);
+  color: #5a5a6e;
+}
+
+.hint {
+  text-align: center;
+  font-size: 26rpx;
+  color: #5a5a6e;
+  margin-top: 30rpx;
+}
+
+.suggested-keywords {
+  margin-top: 80rpx;
+}
+
+.suggested-title {
+  text-align: center;
+  font-size: 28rpx;
+  color: #8b8b8b;
+  margin-bottom: 30rpx;
+}
+
+.keyword-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  justify-content: center;
+}
+
+.keyword-tag {
+  padding: 16rpx 32rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  color: #f0e6d3;
+  font-family: 'STKaiti', '楷体', serif;
+}
+
+/* 诗词卡片 */
 .poetry-card {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 40rpx;
@@ -116,46 +205,6 @@
   border-radius: 8rpx;
   height: 100%;
   transition: width 0.3s;
-}
-
-/* 关键字选择界面 */
-.keyword-select {
-  padding-top: 30rpx;
-}
-
-.select-title {
-  text-align: center;
-  font-size: 36rpx;
-  color: #f0e6d3;
-  margin-bottom: 50rpx;
-  margin-top: 60rpx;
-}
-
-.keyword-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24rpx;
-  justify-content: center;
-}
-
-.keyword-btn {
-  width: 120rpx;
-  height: 120rpx;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 24rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 48rpx;
-  color: #f0e6d3;
-  font-family: 'STKaiti', '楷体', serif;
-}
-
-.keyword-btn.selected {
-  background: linear-gradient(135deg, #e6b85c, #d4a056);
-  border-color: #e6b85c;
-  color: #1a1a2e;
 }
 
 /* 关键字展示 */

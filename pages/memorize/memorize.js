@@ -3,7 +3,8 @@ const poetry = require('../../utils/poetry.js');
 Page({
   data: {
     keyword: '',
-    keywords: ['月', '花', '春', '酒', '诗', '风', '雨', '雪', '秋', '江', '山', '水', '日', '云', '鸟', '鱼', '心', '思', '故', '乡'],
+    inputKeyword: '',
+    suggestedKeywords: ['月', '花', '春', '酒', '风', '雨', '雪', '秋', '江', '山', '水', '日', '云', '鸟', '心', '思', '故', '乡'],
     filteredPoems: [],
     currentIndex: 0,
     totalCount: 0,
@@ -13,27 +14,53 @@ Page({
   },
 
   onLoad() {
-    // 初始状态下不加载诗词，等待用户选择关键字
     this.setData({
       filteredPoems: [],
       totalCount: 0
     });
   },
 
-  selectKeyword(e) {
+  onKeywordInput(e) {
+    const value = e.detail.value;
+    // 只允许输入一个汉字
+    const chineseChar = value.charAt(value.length - 1);
+    if (/[一-龥]/.test(chineseChar)) {
+      this.setData({ inputKeyword: chineseChar });
+    } else if (value === '') {
+      this.setData({ inputKeyword: '' });
+    }
+  },
+
+  selectSuggested(e) {
     const keyword = e.currentTarget.dataset.keyword;
-    const poemsWithKeyword = poetry.findPoemsWithKeyword(keyword);
+    this.setData({ inputKeyword: keyword });
+    this.startMemorize();
+  },
+
+  startMemorize() {
+    const { inputKeyword } = this.data;
+    if (!inputKeyword) return;
+
+    const poemsWithKeyword = poetry.findPoemsWithKeyword(inputKeyword);
+
+    if (poemsWithKeyword.length === 0) {
+      wx.showToast({
+        title: '没有找到相关诗词',
+        icon: 'none'
+      });
+      return;
+    }
 
     poemsWithKeyword.forEach(p => {
       p.sentences = p.content.split(/[，。！？]/).filter(s => s.trim());
     });
 
     this.setData({
-      keyword,
+      keyword: inputKeyword,
       filteredPoems: poemsWithKeyword,
       currentIndex: 0,
       totalCount: poemsWithKeyword.length,
-      currentPoem: poemsWithKeyword.length > 0 ? poemsWithKeyword[0] : {}
+      currentPoem: poemsWithKeyword[0]
     });
 
     this.updateNextTitle();
@@ -73,6 +100,7 @@ Page({
   changeKeyword() {
     this.setData({
       keyword: '',
+      inputKeyword: '',
       filteredPoems: [],
       currentIndex: 0,
       totalCount: 0,

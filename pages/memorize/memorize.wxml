@@ -1,18 +1,35 @@
 <view class="container">
-  <!-- 关键字选择界面 -->
-  <view wx:if="{{!keyword}}" class="keyword-select">
+  <!-- 关键字输入界面 -->
+  <view wx:if="{{!keyword}}" class="keyword-input-view">
     <view class="header">
       <text class="back" bindtap="goBack">← 返回</text>
     </view>
-    <view class="select-title">请选择关键字</view>
-    <view class="keyword-grid">
-      <view
-        wx:for="{{keywords}}"
-        wx:key="index"
-        class="keyword-btn {{selectedKeyword === item ? 'selected' : ''}}"
-        bindtap="selectKeyword"
-        data-keyword="{{item}}"
-      >{{item}}</view>
+    <view class="input-title">请输入一个关键字</view>
+
+    <view class="input-box">
+      <input
+        class="keyword-input"
+        placeholder="输入一个字..."
+        maxlength="1"
+        bindinput="onKeywordInput"
+        value="{{inputKeyword}}"
+      />
+      <button class="start-btn" bindtap="startMemorize" disabled="{{!inputKeyword}}">开始</button>
+    </view>
+
+    <view class="hint">选择一个关键字，系统将展示包含该字的诗词</view>
+
+    <view class="suggested-keywords">
+      <view class="suggested-title">热门关键字</view>
+      <view class="keyword-tags">
+        <view
+          wx:for="{{suggestedKeywords}}"
+          wx:key="index"
+          class="keyword-tag"
+          bindtap="selectSuggested"
+          data-keyword="{{item}}"
+        >{{item}}</view>
+      </view>
     </view>
   </view>
 
