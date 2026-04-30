@@ -15,7 +15,8 @@ Page({
     usedPoemIds: [],
     showSuccessAnimation: false,
     successMessage: '',
-    roundStatus: {}
+    roundStatus: {},
+    showCompleteModal: false
   },
 
   onLoad() {
@@ -72,7 +73,8 @@ Page({
       isCorrect: false,
       matchedPoetry: '',
       usedPoemIds: [],
-      roundStatus: {}
+      roundStatus: {},
+      showCompleteModal: false
     });
   },
 
@@ -101,7 +103,6 @@ Page({
       return;
     }
 
-    // 检查长度是否满足连续两句诗的要求
     const normalized = inputText.replace(/[，。！？、；：""''（）【】]/g, '').trim();
     if (normalized.length < 8) {
       wx.showToast({
@@ -114,7 +115,6 @@ Page({
     const result = poetry.checkAnswer(inputText, keyword);
 
     if (result.correct) {
-      // 检查是否已经答过这首诗
       if (usedPoemIds.includes(result.poem.id)) {
         wx.showToast({
           title: '这句诗已经答过了，换一句试试',
@@ -123,10 +123,8 @@ Page({
         return;
       }
 
-      // 记录已使用的诗词
       const newUsedPoemIds = [...usedPoemIds, result.poem.id];
 
-      // 鼓励语列表
       const encouragements = [
         '太棒了！',
         '诗才横溢！',
@@ -139,22 +137,17 @@ Page({
       ];
       const randomMsg = encouragements[Math.floor(Math.random() * encouragements.length)];
 
-      // 延迟后处理
       setTimeout(() => {
         const newRoundStatus = {...this.data.roundStatus};
         newRoundStatus[currentRound - 1] = true;
 
         if (currentRound >= totalRounds) {
-          // 最后一轮，只显示Toast
-          wx.showToast({
-            title: randomMsg + '恭喜完成本轮！',
-            icon: 'success'
+          this.setData({
+            showCompleteModal: true,
+            successMessage: randomMsg + '恭喜完成本轮！',
+            roundStatus: newRoundStatus
           });
-          setTimeout(() => {
-            this.changeKeyword();
-          }, 2000);
         } else {
-          // 非最后一轮，显示动效后进入下一轮
           this.setData({
             showSuccessAnimation: true,
             successMessage: randomMsg,
@@ -196,7 +189,8 @@ Page({
       isCorrect: false,
       matchedPoetry: '',
       usedPoemIds: [],
-      roundStatus: {}
+      roundStatus: {},
+      showCompleteModal: false
     });
   },
 

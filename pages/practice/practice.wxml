@@ -80,6 +80,18 @@
       </view>
     </view>
 
+    <!-- 完成弹窗 -->
+    <view wx:if="{{showCompleteModal}}" class="complete-modal">
+      <view class="modal-content">
+        <view class="modal-icon">🎊</view>
+        <view class="modal-text">{{successMessage}}</view>
+        <view class="modal-btns">
+          <button class="modal-btn continue-btn" bindtap="changeKeyword">继续</button>
+          <button class="modal-btn home-btn" bindtap="goBack">返回首页</button>
+        </view>
+      </view>
+    </view>
+
     <view class="action-section">
       <button class="submit-btn" bindtap="submitAnswer" disabled="{{!inputText}}">提交答案</button>
     </view>

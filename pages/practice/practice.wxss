@@ -339,3 +339,66 @@
   margin-top: 20rpx;
   font-family: 'STKaiti', '楷体', serif;
 }
+
+/* 完成弹窗 */
+.complete-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+  z-index: 100;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #e6b85c, #d4a056);
+  padding: 60rpx 50rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  animation: scaleIn 0.4s ease-out;
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.3);
+  width: 500rpx;
+}
+
+.modal-icon {
+  font-size: 100rpx;
+}
+
+.modal-text {
+  font-size: 36rpx;
+  color: #1a1a2e;
+  font-weight: bold;
+  margin-top: 20rpx;
+  font-family: 'STKaiti', '楷体', serif;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 40rpx;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 24rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.continue-btn {
+  background: #fff;
+  color: #e6b85c;
+  border: none;
+}
+
+.home-btn {
+  background: rgba(255, 255, 255, 0.3);
+  color: #1a1a2e;
+  border: 2px solid #1a1a2e;
+}
