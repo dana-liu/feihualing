@@ -166,8 +166,7 @@ Page({
             matchedPoetry: '',
             usedPoemIds: newUsedPoemIds,
             showSuccessAnimation: false,
-            successMessage: '',
-            completedRounds: [...this.data.completedRounds, currentRound]
+            successMessage: ''
           });
         }
       }, 1500);
