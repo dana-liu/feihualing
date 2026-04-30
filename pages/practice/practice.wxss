@@ -68,10 +68,10 @@
 .input-box {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 48rpx;
-  padding: 16rpx;
+  padding: 12rpx 16rpx;
   display: flex;
   align-items: center;
-  gap: 16rpx;
+  gap: 12rpx;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -89,11 +89,11 @@
 }
 
 .voice-btn {
-  width: 48rpx;
-  height: 48rpx;
+  width: 40rpx;
+  height: 40rpx;
   background: #e6b85c;
   border: none;
-  border-radius: 24rpx;
+  border-radius: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,7 +103,7 @@
 }
 
 .voice-icon {
-  font-size: 22rpx;
+  font-size: 18rpx;
 }
 
 .input-hint {
