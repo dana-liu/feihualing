@@ -41,7 +41,7 @@ Page({
     const { inputKeyword } = this.data;
     if (!inputKeyword) return;
 
-    const poemsWithKeyword = poetry.findPoemsWithKeyword(inputKeyword);
+    let poemsWithKeyword = poetry.findPoemsWithKeyword(inputKeyword);
 
     if (poemsWithKeyword.length === 0) {
       wx.showToast({
@@ -50,6 +50,9 @@ Page({
       });
       return;
     }
+
+    // 随机打乱诗词顺序
+    poemsWithKeyword = poemsWithKeyword.sort(() => Math.random() - 0.5);
 
     poemsWithKeyword.forEach(p => {
       p.sentences = p.content.split(/[，。！？]/).filter(s => s.trim());
