@@ -1,32 +1,59 @@
 <view class="container">
-  <view class="header">
-    <text class="back" bindtap="goBack">← 返回</text>
-    <text class="progress">{{currentIndex + 1}}/{{totalCount}} 首</text>
+  <!-- 关键字选择界面 -->
+  <view wx:if="{{!keyword}}" class="keyword-select">
+    <view class="header">
+      <text class="back" bindtap="goBack">← 返回</text>
+    </view>
+    <view class="select-title">请选择关键字</view>
+    <view class="keyword-grid">
+      <view
+        wx:for="{{keywords}}"
+        wx:key="index"
+        class="keyword-btn {{selectedKeyword === item ? 'selected' : ''}}"
+        bindtap="selectKeyword"
+        data-keyword="{{item}}"
+      >{{item}}</view>
+    </view>
   </view>
 
-  <view class="poetry-card">
-    <view class="poetry-content">
-      <block wx:for="{{currentPoem.sentences}}" wx:key="index">
-        <text class="poetry-line">{{item}}</text>
-      </block>
+  <!-- 诗词浏览界面 -->
+  <view wx:else class="poetry-view">
+    <view class="header">
+      <text class="back" bindtap="goBack">← 返回</text>
+      <text class="progress">{{currentIndex + 1}}/{{totalCount}} 首</text>
     </view>
 
-    <view class="poetry-info">
-      <text class="poetry-title">《{{currentPoem.title}}》</text>
-      <text class="poetry-author">{{currentPoem.dynasty}} · {{currentPoem.author}}</text>
+    <view class="keyword-show">
+      <text class="keyword-label">当前关键字：</text>
+      <text class="keyword-value">{{keyword}}</text>
     </view>
-  </view>
 
-  <view class="action-btns">
-    <button class="nav-btn prev" bindtap="prevPoem" disabled="{{currentIndex === 0}}">← 上一首</button>
-    <button class="nav-btn next" bindtap="nextPoem">下一首 →</button>
-  </view>
+    <view class="poetry-card">
+      <view class="poetry-content">
+        <block wx:for="{{currentPoem.sentences}}" wx:key="index">
+          <text class="poetry-line">{{item}}</text>
+        </block>
+      </view>
 
-  <view class="progress-bar">
-    <text class="progress-title">{{currentPoem.title}}</text>
-    <text class="progress-next">{{nextTitle}}</text>
-    <view class="bar-track">
-      <view class="bar-fill" style="width: {{progress}}%;"></view>
+      <view class="poetry-info">
+        <text class="poetry-title">《{{currentPoem.title}}》</text>
+        <text class="poetry-author">{{currentPoem.dynasty}} · {{currentPoem.author}}</text>
+      </view>
     </view>
+
+    <view class="action-btns">
+      <button class="nav-btn prev" bindtap="prevPoem" disabled="{{currentIndex === 0}}">← 上一首</button>
+      <button class="nav-btn next" bindtap="nextPoem" disabled="{{currentIndex >= totalCount - 1}}">下一首 →</button>
+    </view>
+
+    <view class="progress-bar">
+      <text class="progress-title">{{currentPoem.title}}</text>
+      <text class="progress-next">{{nextTitle}}</text>
+      <view class="bar-track">
+        <view class="bar-fill" style="width: {{progress}}%;"></view>
+      </view>
+    </view>
+
+    <button class="change-btn" bindtap="changeKeyword">换个关键字</button>
   </view>
 </view>
