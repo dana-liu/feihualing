@@ -7,7 +7,7 @@ Page({
     suggestedKeywords: [],
     filteredPoems: [],
     currentRound: 1,
-    totalRounds: 10,
+    totalRounds: 2,
     inputText: '',
     showResult: false,
     isCorrect: false,
