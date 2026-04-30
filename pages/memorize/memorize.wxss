@@ -39,26 +39,21 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 48rpx;
-  padding: 16rpx 24rpx;
-  min-height: 120rpx;
+  padding: 12rpx 24rpx;
+  height: 100rpx;
+  box-sizing: border-box;
 }
 
 .keyword-input {
   flex: 1;
   background: transparent;
   border: none;
-  padding: 20rpx;
   color: #f0e6d3;
-  font-size: 64rpx;
+  font-size: 56rpx;
   text-align: center;
   font-family: 'STKaiti', '楷体', serif;
-  height: 100rpx;
-  line-height: 100rpx;
-}
-
-.keyword-input::placeholder {
-  color: #5a5a6e;
-  font-size: 32rpx;
+  height: 76rpx;
+  line-height: 76rpx;
 }
 
 .start-btn {

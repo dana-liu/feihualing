@@ -9,7 +9,6 @@
     <view class="input-box">
       <input
         class="keyword-input"
-        placeholder="输入一个字..."
         maxlength="1"
         bindinput="onKeywordInput"
         value="{{inputKeyword}}"
