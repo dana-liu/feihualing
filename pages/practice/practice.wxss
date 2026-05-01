@@ -221,9 +221,8 @@
   height: 40rpx;
   background: rgba(139, 139, 139, 0.3);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  line-height: 40rpx;
 }
 
 .hint-text {
