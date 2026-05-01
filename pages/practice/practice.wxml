@@ -16,6 +16,19 @@
       <button class="start-btn" bindtap="startPractice" disabled="{{!inputKeyword}}">开始</button>
     </view>
 
+    <view class="round-selector">
+      <text class="round-label">练习轮数：</text>
+      <view class="round-options">
+        <view
+          wx:for="{{roundOptions}}"
+          wx:key="index"
+          class="round-option {{selectedRounds === item ? 'selected' : ''}}"
+          bindtap="selectRound"
+          data-round="{{item}}"
+        >{{item}}轮</view>
+      </view>
+    </view>
+
     <view class="hint">输入包含关键字的诗词</view>
 
     <view class="suggested-keywords">

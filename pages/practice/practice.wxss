@@ -122,6 +122,39 @@
   margin-top: 20rpx;
 }
 
+.round-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30rpx;
+  gap: 20rpx;
+}
+
+.round-label {
+  font-size: 28rpx;
+  color: #8b8b8b;
+}
+
+.round-options {
+  display: flex;
+  gap: 16rpx;
+}
+
+.round-option {
+  padding: 12rpx 24rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  color: #8b8b8b;
+}
+
+.round-option.selected {
+  background: rgba(107, 140, 206, 0.3);
+  border-color: #6b8cce;
+  color: #6b8cce;
+}
+
 .result-section {
   margin-bottom: 40rpx;
 }

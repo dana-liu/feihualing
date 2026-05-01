@@ -9,6 +9,8 @@ Page({
     filteredPoems: [],
     currentRound: 1,
     totalRounds: 2,
+    selectedRounds: 2,
+    roundOptions: [2, 5, 10],
     inputText: '',
     showResult: false,
     isCorrect: false,
@@ -62,8 +64,13 @@ Page({
     this.startPractice();
   },
 
+  selectRound(e) {
+    const round = e.currentTarget.dataset.round;
+    this.setData({ selectedRounds: round });
+  },
+
   startPractice() {
-    const { inputKeyword } = this.data;
+    const { inputKeyword, selectedRounds } = this.data;
     if (!inputKeyword) return;
 
     const poemsWithKeyword = poetry.findPoemsWithKeyword(inputKeyword);
@@ -80,6 +87,7 @@ Page({
       keyword: inputKeyword,
       filteredPoems: poemsWithKeyword,
       currentRound: 1,
+      totalRounds: selectedRounds,
       inputText: '',
       showResult: false,
       isCorrect: false,
