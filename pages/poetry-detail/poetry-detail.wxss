@@ -15,6 +15,16 @@
   color: #f0e6d3;
 }
 
+.favorite-btn {
+  font-size: 48rpx;
+  color: #5a5a6e;
+  padding: 10rpx;
+}
+
+.favorite-btn.favorited {
+  color: #e6b85c;
+}
+
 /* 诗词卡片 */
 .poetry-card {
   background: rgba(255, 255, 255, 0.05);
@@ -93,4 +103,10 @@
   font-size: 28rpx;
   color: #f0e6d3;
   font-family: 'STKaiti', '楷体', serif;
+}
+
+.keyword-tag.selected {
+  background: rgba(230, 184, 92, 0.3);
+  border-color: #e6b85c;
+  color: #e6b85c;
 }

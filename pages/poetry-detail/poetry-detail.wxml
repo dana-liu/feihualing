@@ -1,12 +1,13 @@
 <view class="container">
   <view class="header">
     <text class="back" bindtap="goBack">← 返回</text>
+    <text class="favorite-btn {{isFavorited ? 'favorited' : ''}}" bindtap="toggleFavorite">{{isFavorited ? '★' : '☆'}}</text>
   </view>
 
   <view class="poetry-card">
     <view class="poetry-content">
       <view wx:for="{{sentences}}" wx:key="index" class="poetry-sentence">
-        <text wx:for="{{item}}" wx:for-item="char" wx:key="charIdx" class="{{char.isKeyword ? 'keyword-char' : ''}} {{char.isPunctuation ? 'punctuation' : ''}}">{{char.char}}</text>
+        <text wx:for="{{item}}" wx:for-item="char" wx:key="charIdx" class="{{char.isHighlight ? 'keyword-char' : ''}} {{char.isPunctuation ? 'punctuation' : ''}}">{{char.char}}</text>
       </view>
     </view>
 
@@ -17,9 +18,15 @@
   </view>
 
   <view class="keyword-section">
-    <text class="keyword-title">关键字</text>
+    <text class="keyword-title">点击关键字高亮</text>
     <view class="keyword-tags">
-      <text wx:for="{{poem.keywords}}" wx:key="index" class="keyword-tag">{{item}}</text>
+      <text
+        wx:for="{{poem.keywords}}"
+        wx:key="index"
+        class="keyword-tag {{highlightKeyword === item ? 'selected' : ''}}"
+        bindtap="highlightKeyword"
+        data-keyword="{{item}}"
+      >{{item}}</text>
     </view>
   </view>
 </view>
