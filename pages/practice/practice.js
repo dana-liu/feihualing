@@ -23,7 +23,8 @@ Page({
     successMessage: '',
     roundStatus: {},
     showCompleteModal: false,
-    isSubmitting: false
+    isSubmitting: false,
+    wrongAnswer: false
   },
 
   onLoad() {
@@ -106,7 +107,8 @@ Page({
   onInput(e) {
     this.setData({
       inputText: e.detail.value,
-      showResult: false
+      showResult: false,
+      wrongAnswer: false
     });
   },
 
@@ -181,7 +183,8 @@ Page({
         this.setData({
           showCompleteModal: true,
           successMessage: randomMsg + '恭喜完成本轮！',
-          roundStatus: newRoundStatus
+          roundStatus: newRoundStatus,
+          wrongAnswer: false
         });
         this.submitting = false;
       } else {
@@ -204,7 +207,8 @@ Page({
             usedHintIds: [],
             showSuccessAnimation: false,
             successMessage: '',
-            roundStatus: newRoundStatus
+            roundStatus: newRoundStatus,
+            wrongAnswer: false
           });
           this.submitting = false;
         }, 1500);
@@ -222,7 +226,7 @@ Page({
         matchedPoetry: '回答错误',
         hintPoetry: hintPoem ? hintPoem.content : '',
         showHint: false,
-        inputText: ''
+        wrongAnswer: true
       });
       this.submitting = false;
     }
@@ -255,7 +259,8 @@ Page({
       usedHintIds: [],
       roundStatus: {},
       showCompleteModal: false,
-      isSubmitting: false
+      isSubmitting: false,
+      wrongAnswer: false
     });
   },
 

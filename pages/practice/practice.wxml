@@ -107,7 +107,7 @@
     </view>
 
     <view class="action-section">
-      <button class="submit-btn" bindtap="submitAnswer" disabled="{{!inputText || isSubmitting}}">提交答案</button>
+      <button class="submit-btn" bindtap="submitAnswer" disabled="{{!inputText || isSubmitting || wrongAnswer}}">提交答案</button>
     </view>
 
     <button class="change-btn" bindtap="changeKeyword">换个关键字</button>
