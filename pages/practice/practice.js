@@ -221,7 +221,8 @@ Page({
         isCorrect: false,
         matchedPoetry: '回答错误',
         hintPoetry: hintPoem ? hintPoem.content : '',
-        showHint: false
+        showHint: false,
+        inputText: ''
       });
       this.submitting = false;
     }
