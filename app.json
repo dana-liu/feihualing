@@ -4,7 +4,8 @@
     "pages/practice/practice",
     "pages/memorize/memorize",
     "pages/library/library",
-    "pages/poetry-detail/poetry-detail"
+    "pages/poetry-detail/poetry-detail",
+    "pages/favorites/favorites"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -7,5 +7,8 @@ Page({
   },
   goToLibrary() {
     wx.navigateTo({ url: '/pages/library/library' });
+  },
+  goToFavorites() {
+    wx.navigateTo({ url: '/pages/favorites/favorites' });
   }
 })

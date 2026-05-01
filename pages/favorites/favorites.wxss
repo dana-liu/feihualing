@@ -1,0 +1,89 @@
+.container {
+  padding: 30rpx 40rpx;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.back {
+  font-size: 32rpx;
+  color: #f0e6d3;
+}
+
+.title {
+  font-size: 36rpx;
+  color: #f0e6d3;
+  font-weight: bold;
+}
+
+.count {
+  font-size: 28rpx;
+  color: #8b8b8b;
+}
+
+.empty-tip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 200rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  color: #5a5a6e;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #8b8b8b;
+  margin-top: 30rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #5a5a6e;
+  margin-top: 20rpx;
+}
+
+.poem-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.poem-item {
+  background: #2a2a4a;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+}
+
+.poem-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.poem-title {
+  font-size: 30rpx;
+  color: #f0e6d3;
+  font-weight: bold;
+}
+
+.poem-author {
+  font-size: 24rpx;
+  color: #6b8cce;
+}
+
+.poem-preview {
+  font-size: 26rpx;
+  color: #8b8b8b;
+  line-height: 1.6;
+  font-family: 'STKaiti', '楷体', serif;
+}
