@@ -153,10 +153,17 @@ Page({
       // 检查是否已经答过
       if (usedPoemIds.includes(result.poem.id)) {
         audio.playWrong();
+        // 获取一个提示诗词（排除已回答过的和已提示过的）
+        const poemsWithKeyword = poetry.findPoemsWithKeyword(keyword);
+        const availablePoems = poemsWithKeyword.filter(p => !usedPoemIds.includes(p.id) && !usedHintIds.includes(p.id));
+        const hintPoem = availablePoems.length > 0 ? availablePoems[0] : null;
+
         this.setData({
           showResult: true,
           isCorrect: false,
-          matchedPoetry: '这句诗已经答过了，换一句试试'
+          matchedPoetry: '这句诗已经答过了，换一句试试',
+          hintPoetry: hintPoem ? hintPoem.content : '',
+          wrongAnswer: true
         });
         this.submitting = false;
         return;
