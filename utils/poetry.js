@@ -6,10 +6,10 @@ function findPoemsWithKeyword(keyword) {
   );
 }
 
-function checkAnswer(inputText, keyword) {
+function checkAnswer(inputText, keyword, excludeIds = []) {
   // 移除所有标点符号
   const normalizedInput = inputText.replace(/[，。！？、；：""''（）【】]/g, '').trim();
-  const poemsWithKeyword = findPoemsWithKeyword(keyword);
+  let poemsWithKeyword = findPoemsWithKeyword(keyword);
 
   // 必须是连续的两句诗（8-30个字）
   if (normalizedInput.length < 8 || normalizedInput.length > 30) {
@@ -32,8 +32,9 @@ function checkAnswer(inputText, keyword) {
     }
   }
 
-  // 答错时，返回一个提示诗词（包含该关键字的任意一首）
-  const hint = poemsWithKeyword.length > 0 ? poemsWithKeyword[0] : null;
+  // 答错时，返回一个提示诗词（排除已使用过的）
+  const availablePoems = poemsWithKeyword.filter(p => !excludeIds.includes(p.id));
+  const hint = availablePoems.length > 0 ? availablePoems[0] : (poemsWithKeyword.length > 0 ? poemsWithKeyword[0] : null);
   return { correct: false, poem: null, hint };
 }
 

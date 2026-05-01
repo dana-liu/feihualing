@@ -212,14 +212,23 @@
   font-family: 'STKaiti', '楷体', serif;
 }
 
-.hint-btn {
-  margin-top: 20rpx;
-  padding: 16rpx 32rpx;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 30rpx;
+.hint-tag {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: rgba(107, 140, 206, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
   color: #6b8cce;
-  font-size: 26rpx;
+}
+
+.hint-tag.hide {
+  display: none;
 }
 
 .action-section {

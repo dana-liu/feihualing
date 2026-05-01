@@ -79,8 +79,8 @@
           <text class="result-title">{{isCorrect ? '回答正确！' : matchedPoetry}}</text>
           <text class="result-poetry" wx:if="{{isCorrect}}">{{matchedPoetry}}</text>
           <text class="result-hint" wx:if="{{!isCorrect && showHint && hintPoetry}}">{{hintPoetry}}</text>
-          <button class="hint-btn" wx:if="{{!isCorrect && !showHint}}" bindtap="showHint">需要提示</button>
         </view>
+        <text class="hint-tag {{isCorrect ? 'hide' : ''}} {{showHint ? 'hide' : ''}}" wx:if="{{!isCorrect}}" bindtap="showHint">？</text>
       </view>
     </view>
 

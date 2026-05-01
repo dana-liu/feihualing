@@ -18,6 +18,7 @@ Page({
     hintPoetry: '',
     showHint: false,
     usedPoemIds: [],
+    usedHintIds: [],
     showSuccessAnimation: false,
     successMessage: '',
     roundStatus: {},
@@ -96,6 +97,7 @@ Page({
       hintPoetry: '',
       showHint: false,
       usedPoemIds: [],
+      usedHintIds: [],
       roundStatus: {},
       showCompleteModal: false
     });
@@ -119,7 +121,7 @@ Page({
     if (this.submitting) return;
     this.submitting = true;
 
-    const { inputText, keyword, currentRound, totalRounds, usedPoemIds } = this.data;
+    const { inputText, keyword, currentRound, totalRounds, usedPoemIds, usedHintIds } = this.data;
 
     if (!inputText || inputText.trim().length === 0) {
       wx.showToast({
@@ -140,7 +142,7 @@ Page({
       return;
     }
 
-    const result = poetry.checkAnswer(inputText, keyword);
+    const result = poetry.checkAnswer(inputText, keyword, usedHintIds);
 
     if (result.correct) {
       if (usedPoemIds.includes(result.poem.id)) {
@@ -197,6 +199,7 @@ Page({
             hintPoetry: '',
             showHint: false,
             usedPoemIds: newUsedPoemIds,
+            usedHintIds: [],
             showSuccessAnimation: false,
             successMessage: '',
             roundStatus: newRoundStatus
@@ -223,7 +226,11 @@ Page({
   },
 
   showHint() {
-    this.setData({ showHint: true });
+    const { hintPoetry, usedHintIds } = this.data;
+    if (hintPoetry && hintPoetry.id) {
+      usedHintIds.push(hintPoetry.id);
+    }
+    this.setData({ showHint: true, usedHintIds });
   },
 
   changeKeyword() {
@@ -239,6 +246,7 @@ Page({
       hintPoetry: '',
       showHint: false,
       usedPoemIds: [],
+      usedHintIds: [],
       roundStatus: {},
       showCompleteModal: false,
       isSubmitting: false
