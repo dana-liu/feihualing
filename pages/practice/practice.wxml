@@ -70,6 +70,7 @@
         <input class="poetry-input" placeholder="请输入连续两句诗..." placeholder-class="input-placeholder" bindinput="onInput" value="{{inputText}}"/>
       </view>
       <text class="input-hint">输入连续的两句诗（8-30字）</text>
+        <text class="input-tip">仅支持诗词库中的诗词</text>
     </view>
 
     <view class="result-section" wx:if="{{showResult}}">

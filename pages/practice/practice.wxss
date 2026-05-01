@@ -122,6 +122,14 @@
   margin-top: 20rpx;
 }
 
+.input-tip {
+  display: block;
+  text-align: center;
+  font-size: 22rpx;
+  color: #5a5a6e;
+  margin-top: 10rpx;
+}
+
 .round-selector {
   display: flex;
   align-items: center;
