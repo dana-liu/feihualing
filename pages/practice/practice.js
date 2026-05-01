@@ -108,7 +108,9 @@ Page({
     this.setData({
       inputText: e.detail.value,
       showResult: false,
-      wrongAnswer: false
+      wrongAnswer: false,
+      hintPoetry: '',
+      showHint: false
     });
   },
 
