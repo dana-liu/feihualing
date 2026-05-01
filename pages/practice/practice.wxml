@@ -80,7 +80,9 @@
           <text class="result-poetry" wx:if="{{isCorrect}}">{{matchedPoetry}}</text>
           <text class="result-hint" wx:if="{{!isCorrect && showHint && hintPoetry}}">{{hintPoetry}}</text>
         </view>
-        <text class="hint-tag" wx:if="{{!isCorrect && !showHint}}" bindtap="showHint">？</text>
+        <view class="hint-tag" wx:if="{{!isCorrect && !showHint}}" bindtap="showHint">
+          <text class="hint-text">？</text>
+        </view>
       </view>
     </view>
 
