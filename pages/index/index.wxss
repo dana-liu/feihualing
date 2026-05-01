@@ -9,17 +9,49 @@
   margin-bottom: 80rpx;
 }
 
-.title {
-  display: block;
-  font-size: 72rpx;
-  color: #f0e6d3;
-  font-family: 'STKaiti', '楷体', serif;
+.title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 16rpx;
+}
+
+.title-fei {
+  font-size: 80rpx;
+  font-family: 'STKaiti', '楷体', serif;
+  background: linear-gradient(135deg, #e6b85c, #d4a056);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4rpx 8rpx rgba(230, 184, 92, 0.3);
+}
+
+.title-hua {
+  font-size: 80rpx;
+  font-family: 'STKaiti', '楷体', serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4rpx 8rpx rgba(255, 154, 158, 0.3);
+  margin: 0 4rpx;
+}
+
+.title-ling {
+  font-size: 80rpx;
+  font-family: 'STKuiti', '楷体', serif;
+  background: linear-gradient(135deg, #6b8cce, #5a7ab8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4rpx 8rpx rgba(107, 140, 206, 0.3);
 }
 
 .subtitle {
   font-size: 26rpx;
   color: #8b8b8b;
+  font-family: 'STKaiti', '楷体', serif;
+  letter-spacing: 8rpx;
 }
 
 .mode-list {

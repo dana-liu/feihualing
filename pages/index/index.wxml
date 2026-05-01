@@ -1,6 +1,10 @@
 <view class="container">
   <view class="header">
-    <text class="title">飞花令</text>
+    <view class="title-wrapper">
+      <text class="title-fei">飞</text>
+      <text class="title-hua">花</text>
+      <text class="title-ling">令</text>
+    </view>
     <text class="subtitle">传承千年的诗词雅趣</text>
   </view>
 
