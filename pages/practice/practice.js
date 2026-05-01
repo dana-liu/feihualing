@@ -237,8 +237,6 @@ Page({
     }
     this.setData({ showHint: true, usedHintIds });
   },
-    this.setData({ showHint: true, usedHintIds });
-  },
 
   changeKeyword() {
     this.setData({
