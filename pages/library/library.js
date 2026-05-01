@@ -4,7 +4,9 @@ Page({
   data: {
     poems: [],
     filteredPoems: [],
-    searchText: ''
+    searchText: '',
+    dynastyOptions: ['全部', '唐', '宋', '元', '明', '清'],
+    selectedDynasty: '全部'
   },
 
   onLoad() {
@@ -16,18 +18,35 @@ Page({
 
   onSearch(e) {
     const searchText = e.detail.value.toLowerCase();
-    const { poems } = this.data;
+    const { poems, selectedDynasty } = this.data;
 
-    if (!searchText) {
-      this.setData({ filteredPoems: poems, searchText: '' });
-      return;
+    this.filterPoems(poems, searchText, selectedDynasty);
+  },
+
+  selectDynasty(e) {
+    const dynasty = e.currentTarget.dataset.dynasty;
+    const { poems, searchText } = this.data;
+
+    this.setData({ selectedDynasty: dynasty });
+    this.filterPoems(poems, searchText, dynasty);
+  },
+
+  filterPoems(allPoems, searchText, dynasty) {
+    let filtered = allPoems;
+
+    // 按朝代筛选
+    if (dynasty !== '全部') {
+      filtered = filtered.filter(poem => poem.dynasty === dynasty);
     }
 
-    const filtered = poems.filter(poem =>
-      poem.title.toLowerCase().includes(searchText) ||
-      poem.author.toLowerCase().includes(searchText) ||
-      poem.content.toLowerCase().includes(searchText)
-    );
+    // 按搜索文本筛选
+    if (searchText) {
+      filtered = filtered.filter(poem =>
+        poem.title.toLowerCase().includes(searchText) ||
+        poem.author.toLowerCase().includes(searchText) ||
+        poem.content.toLowerCase().includes(searchText)
+      );
+    }
 
     this.setData({ filteredPoems: filtered, searchText });
   },

@@ -1,11 +1,26 @@
 <view class="container">
   <view class="header">
     <text class="back" bindtap="goBack">← 返回</text>
-    <text class="count">共 {{searchText ? filteredPoems.length : poems.length}} 首</text>
+    <text class="count">共 {{filteredPoems.length}} 首</text>
   </view>
 
   <view class="search-bar">
     <input class="search-input" placeholder="搜索诗词、作者..." bindinput="onSearch" value="{{searchText}}"/>
+  </view>
+
+  <view class="filter-bar">
+    <view class="filter-group">
+      <text class="filter-label">朝代：</text>
+      <view class="filter-options">
+        <view
+          wx:for="{{dynastyOptions}}"
+          wx:key="index"
+          class="filter-option {{selectedDynasty === item ? 'selected' : ''}}"
+          bindtap="selectDynasty"
+          data-dynasty="{{item}}"
+        >{{item}}</view>
+      </view>
+    </view>
   </view>
 
   <view class="poem-list">

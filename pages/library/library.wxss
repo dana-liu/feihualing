@@ -22,7 +22,7 @@
 }
 
 .search-bar {
-  margin-bottom: 30rpx;
+  margin-bottom: 20rpx;
 }
 
 .search-input {
@@ -36,6 +36,42 @@
 
 .search-input::placeholder {
   color: #5a5a6e;
+}
+
+.filter-bar {
+  margin-bottom: 20rpx;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.filter-label {
+  font-size: 26rpx;
+  color: #8b8b8b;
+}
+
+.filter-options {
+  display: flex;
+  gap: 12rpx;
+  flex-wrap: wrap;
+}
+
+.filter-option {
+  padding: 8rpx 20rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  color: #8b8b8b;
+}
+
+.filter-option.selected {
+  background: rgba(107, 140, 206, 0.3);
+  border-color: #6b8cce;
+  color: #6b8cce;
 }
 
 .poem-list {
