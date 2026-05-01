@@ -142,9 +142,11 @@ Page({
       return;
     }
 
-    const result = poetry.checkAnswer(inputText, keyword, usedHintIds);
+    // 先检查答案是否正确（不排除任何诗词）
+    const result = poetry.checkAnswer(inputText, keyword);
 
     if (result.correct) {
+      // 检查是否已经答过
       if (usedPoemIds.includes(result.poem.id)) {
         audio.playWrong();
         this.setData({
@@ -209,16 +211,16 @@ Page({
       }
     } else {
       audio.playWrong();
-      // 显示错误提示，等待用户点击提示按钮
-      let hintPoetry = '';
-      if (result.hint) {
-        hintPoetry = result.hint.content;
-      }
+      // 获取一个提示诗词（排除已使用过的）
+      const poemsWithKeyword = poetry.findPoemsWithKeyword(keyword);
+      const availablePoems = poemsWithKeyword.filter(p => !usedHintIds.includes(p.id));
+      const hintPoem = availablePoems.length > 0 ? availablePoems[0] : (poemsWithKeyword.length > 0 ? poemsWithKeyword[0] : null);
+
       this.setData({
         showResult: true,
         isCorrect: false,
         matchedPoetry: '回答错误',
-        hintPoetry: hintPoetry,
+        hintPoetry: hintPoem ? hintPoem.content : '',
         showHint: false
       });
       this.submitting = false;
@@ -226,10 +228,15 @@ Page({
   },
 
   showHint() {
-    const { hintPoetry, usedHintIds } = this.data;
-    if (hintPoetry && hintPoetry.id) {
-      usedHintIds.push(hintPoetry.id);
+    const { hintPoetry, usedHintIds, keyword } = this.data;
+    // 找到当前提示诗词的ID并加入已使用列表
+    const poemsWithKeyword = poetry.findPoemsWithKeyword(keyword);
+    const hintPoem = poemsWithKeyword.find(p => p.content === hintPoetry);
+    if (hintPoem && !usedHintIds.includes(hintPoem.id)) {
+      usedHintIds.push(hintPoem.id);
     }
+    this.setData({ showHint: true, usedHintIds });
+  },
     this.setData({ showHint: true, usedHintIds });
   },
 
