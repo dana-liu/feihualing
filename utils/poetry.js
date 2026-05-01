@@ -13,7 +13,7 @@ function checkAnswer(inputText, keyword) {
 
   // 必须是连续的两句诗（8-30个字）
   if (normalizedInput.length < 8 || normalizedInput.length > 30) {
-    return { correct: false, poem: null };
+    return { correct: false, poem: null, hint: null };
   }
 
   for (const poem of poemsWithKeyword) {
@@ -27,12 +27,14 @@ function checkAnswer(inputText, keyword) {
 
       // 用户输入必须恰好等于连续两句的合并
       if (combinedText === normalizedInput) {
-        return { correct: true, poem };
+        return { correct: true, poem, hint: null };
       }
     }
   }
 
-  return { correct: false, poem: null };
+  // 答错时，返回一个提示诗词（包含该关键字的任意一首）
+  const hint = poemsWithKeyword.length > 0 ? poemsWithKeyword[0] : null;
+  return { correct: false, poem: null, hint };
 }
 
 function getAllKeywords() {

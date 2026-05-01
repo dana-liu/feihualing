@@ -171,6 +171,14 @@
   font-family: 'STKaiti', '楷体', serif;
 }
 
+.result-hint {
+  font-size: 26rpx;
+  color: #8b8b8b;
+  margin-top: 16rpx;
+  display: block;
+  font-family: 'STKaiti', '楷体', serif;
+}
+
 .action-section {
   text-align: center;
 }

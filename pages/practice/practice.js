@@ -13,6 +13,7 @@ Page({
     showResult: false,
     isCorrect: false,
     matchedPoetry: '',
+    hintPoetry: '',
     usedPoemIds: [],
     showSuccessAnimation: false,
     successMessage: '',
@@ -83,6 +84,7 @@ Page({
       showResult: false,
       isCorrect: false,
       matchedPoetry: '',
+      hintPoetry: '',
       usedPoemIds: [],
       roundStatus: {},
       showCompleteModal: false
@@ -182,6 +184,7 @@ Page({
             showResult: false,
             isCorrect: false,
             matchedPoetry: '',
+            hintPoetry: '',
             usedPoemIds: newUsedPoemIds,
             showSuccessAnimation: false,
             successMessage: '',
@@ -192,10 +195,16 @@ Page({
       }
     } else {
       audio.playWrong();
+      // 显示正确答案
+      let hintPoetry = '';
+      if (result.hint) {
+        hintPoetry = result.hint.content;
+      }
       this.setData({
         showResult: true,
         isCorrect: false,
-        matchedPoetry: '回答错误'
+        matchedPoetry: '回答错误',
+        hintPoetry: hintPoetry
       });
       this.submitting = false;
     }
@@ -211,6 +220,7 @@ Page({
       showResult: false,
       isCorrect: false,
       matchedPoetry: '',
+      hintPoetry: '',
       usedPoemIds: [],
       roundStatus: {},
       showCompleteModal: false,
