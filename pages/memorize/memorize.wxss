@@ -118,6 +118,23 @@
   justify-content: center;
 }
 
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.favorite-btn {
+  font-size: 48rpx;
+  color: #5a5a6e;
+  padding: 10rpx;
+}
+
+.favorite-btn.favorited {
+  color: #e6b85c;
+}
+
 .poetry-content {
   text-align: center;
   margin-bottom: 40rpx;

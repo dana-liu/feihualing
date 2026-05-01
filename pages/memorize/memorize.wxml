@@ -47,6 +47,11 @@
     </view>
 
     <view class="poetry-card">
+      <view class="card-header">
+        <text class="poetry-title">《{{currentPoem.title}}》</text>
+        <text class="favorite-btn {{isFavorited ? 'favorited' : ''}}" bindtap="toggleFavorite"> {{isFavorited ? '★' : '☆'}}</text>
+      </view>
+
       <view class="poetry-content">
         <view wx:for="{{currentPoem.sentences}}" wx:key="index" class="poetry-sentence">
           <text wx:for="{{item}}" wx:for-item="char" wx:key="charIdx" class="{{char.isKeyword ? 'keyword-char' : ''}} {{char.isPunctuation ? 'punctuation' : ''}}">{{char.char}}</text>
@@ -54,7 +59,6 @@
       </view>
 
       <view class="poetry-info">
-        <text class="poetry-title">《{{currentPoem.title}}》</text>
         <text class="poetry-author">{{currentPoem.dynasty}} · {{currentPoem.author}}</text>
       </view>
     </view>

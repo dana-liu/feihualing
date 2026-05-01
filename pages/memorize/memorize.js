@@ -10,13 +10,18 @@ Page({
     totalCount: 0,
     currentPoem: {},
     nextTitle: '',
-    progress: 0
+    progress: 0,
+    isFavorited: false,
+    favorites: []
   },
 
   onLoad() {
+    // 加载收藏
+    const favorites = wx.getStorageSync('favorites') || [];
     this.setData({
       filteredPoems: [],
-      totalCount: 0
+      totalCount: 0,
+      favorites: favorites
     });
   },
 
@@ -91,6 +96,35 @@ Page({
     });
 
     this.updateNextTitle();
+    this.checkFavorite();
+  },
+
+  toggleFavorite() {
+    const { currentPoem, favorites } = this.data;
+    if (!currentPoem.id) return;
+
+    const poemId = currentPoem.id;
+    const index = favorites.indexOf(poemId);
+
+    if (index > -1) {
+      favorites.splice(index, 1);
+    } else {
+      favorites.push(poemId);
+    }
+
+    wx.setStorageSync('favorites', favorites);
+    this.setData({
+      favorites: favorites,
+      isFavorited: index === -1
+    });
+  },
+
+  checkFavorite() {
+    const { currentPoem, favorites } = this.data;
+    if (!currentPoem.id) return;
+
+    const isFavorited = favorites.includes(currentPoem.id);
+    this.setData({ isFavorited });
   },
 
   prevPoem() {
@@ -102,6 +136,7 @@ Page({
         currentPoem: filteredPoems[newIndex]
       });
       this.updateNextTitle();
+      this.checkFavorite();
     }
   },
 
@@ -114,6 +149,7 @@ Page({
         currentPoem: filteredPoems[newIndex]
       });
       this.updateNextTitle();
+      this.checkFavorite();
     }
   },
 
