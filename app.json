@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/practice/practice",
     "pages/memorize/memorize",
-    "pages/library/library"
+    "pages/library/library",
+    "pages/poetry-detail/poetry-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

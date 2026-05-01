@@ -19,7 +19,7 @@ Page({
     const { poems } = this.data;
 
     if (!searchText) {
-      this.setData({ filteredPoems: poems });
+      this.setData({ filteredPoems: poems, searchText: '' });
       return;
     }
 
@@ -29,10 +29,17 @@ Page({
       poem.content.toLowerCase().includes(searchText)
     );
 
-    this.setData({ filteredPoems: filtered });
+    this.setData({ filteredPoems: filtered, searchText });
   },
 
   goBack() {
     wx.navigateBack();
+  },
+
+  goToDetail(e) {
+    const { id } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: '/pages/poetry-detail/poetry-detail?id=' + id
+    });
   }
 })

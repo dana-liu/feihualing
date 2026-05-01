@@ -251,3 +251,17 @@
   font-size: 28rpx;
   text-align: center;
 }
+
+/* 随机关键字按钮 */
+.random-btn {
+  display: block;
+  width: 100%;
+  margin-top: 30rpx;
+  padding: 24rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 60rpx;
+  color: #6b8cce;
+  font-size: 28rpx;
+  text-align: center;
+}

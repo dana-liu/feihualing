@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="header">
+    <text class="back" bindtap="goBack">← 返回</text>
+  </view>
+
+  <view class="poetry-card">
+    <view class="poetry-content">
+      <view wx:for="{{sentences}}" wx:key="index" class="poetry-sentence">
+        <text wx:for="{{item}}" wx:for-item="char" wx:key="charIdx" class="{{char.isKeyword ? 'keyword-char' : ''}} {{char.isPunctuation ? 'punctuation' : ''}}">{{char.char}}</text>
+      </view>
+    </view>
+
+    <view class="poetry-info">
+      <text class="poetry-title">《{{poem.title}}》</text>
+      <text class="poetry-author">{{poem.dynasty}} · {{poem.author}}</text>
+    </view>
+  </view>
+
+  <view class="keyword-section">
+    <text class="keyword-title">关键字</text>
+    <view class="keyword-tags">
+      <text wx:for="{{poem.keywords}}" wx:key="index" class="keyword-tag">{{item}}</text>
+    </view>
+  </view>
+</view>

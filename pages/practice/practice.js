@@ -17,12 +17,22 @@ Page({
     showSuccessAnimation: false,
     successMessage: '',
     roundStatus: {},
-    showCompleteModal: false
+    showCompleteModal: false,
+    isSubmitting: false
   },
 
   onLoad() {
-    const allKeywords = poetry.getAllKeywords();
-    const suggested = allKeywords.slice(0, 18);
+    const poems = poetry.poems;
+    const keywordCount = {};
+    poems.forEach(p => {
+      p.keywords.forEach(k => {
+        keywordCount[k] = (keywordCount[k] || 0) + 1;
+      });
+    });
+    const suggested = Object.entries(keywordCount)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 18)
+      .map(([kw]) => kw);
     this.setData({
       suggestedKeywords: suggested,
       filteredPoems: []
@@ -94,6 +104,9 @@ Page({
   },
 
   submitAnswer() {
+    if (this.submitting) return;
+    this.submitting = true;
+
     const { inputText, keyword, currentRound, totalRounds, usedPoemIds } = this.data;
 
     if (!inputText || inputText.trim().length === 0) {
@@ -101,6 +114,7 @@ Page({
         title: '请输入诗句',
         icon: 'none'
       });
+      this.submitting = false;
       return;
     }
 
@@ -110,20 +124,25 @@ Page({
         title: '请输入连续的两句诗',
         icon: 'none'
       });
+      this.submitting = false;
       return;
     }
 
     const result = poetry.checkAnswer(inputText, keyword);
 
     if (result.correct) {
-      audio.playCorrect();
       if (usedPoemIds.includes(result.poem.id)) {
-        wx.showToast({
-          title: '这句诗已经答过了，换一句试试',
-          icon: 'none'
+        audio.playWrong();
+        this.setData({
+          showResult: true,
+          isCorrect: false,
+          matchedPoetry: '这句诗已经答过了，换一句试试'
         });
+        this.submitting = false;
         return;
       }
+
+      audio.playCorrect();
 
       const newUsedPoemIds = [...usedPoemIds, result.poem.id];
 
@@ -139,45 +158,46 @@ Page({
       ];
       const randomMsg = encouragements[Math.floor(Math.random() * encouragements.length)];
 
-      setTimeout(() => {
-        const newRoundStatus = {...this.data.roundStatus};
-        newRoundStatus[currentRound - 1] = true;
+      const newRoundStatus = {...this.data.roundStatus};
+      newRoundStatus[currentRound - 1] = true;
 
-        if (currentRound >= totalRounds) {
+      if (currentRound >= totalRounds) {
+        this.setData({
+          showCompleteModal: true,
+          successMessage: randomMsg + '恭喜完成本轮！',
+          roundStatus: newRoundStatus
+        });
+        this.submitting = false;
+      } else {
+        this.setData({
+          showSuccessAnimation: true,
+          successMessage: randomMsg,
+          matchedPoetry: result.poem.content,
+          roundStatus: newRoundStatus
+        });
+        setTimeout(() => {
           this.setData({
-            showCompleteModal: true,
-            successMessage: randomMsg + '恭喜完成本轮！',
+            currentRound: currentRound + 1,
+            inputText: '',
+            showResult: false,
+            isCorrect: false,
+            matchedPoetry: '',
+            usedPoemIds: newUsedPoemIds,
+            showSuccessAnimation: false,
+            successMessage: '',
             roundStatus: newRoundStatus
           });
-        } else {
-          this.setData({
-            showSuccessAnimation: true,
-            successMessage: randomMsg,
-            matchedPoetry: result.poem.content,
-            roundStatus: newRoundStatus
-          });
-          setTimeout(() => {
-            this.setData({
-              currentRound: currentRound + 1,
-              inputText: '',
-              showResult: false,
-              isCorrect: false,
-              matchedPoetry: '',
-              usedPoemIds: newUsedPoemIds,
-              showSuccessAnimation: false,
-              successMessage: '',
-              roundStatus: newRoundStatus
-            });
-          }, 1500);
-        }
-      }, 300);
+          this.submitting = false;
+        }, 1500);
+      }
     } else {
       audio.playWrong();
       this.setData({
         showResult: true,
         isCorrect: false,
-        matchedPoetry: ''
+        matchedPoetry: '回答错误'
       });
+      this.submitting = false;
     }
   },
 
@@ -193,7 +213,8 @@ Page({
       matchedPoetry: '',
       usedPoemIds: [],
       roundStatus: {},
-      showCompleteModal: false
+      showCompleteModal: false,
+      isSubmitting: false
     });
   },
 

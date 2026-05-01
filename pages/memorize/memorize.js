@@ -4,7 +4,7 @@ Page({
   data: {
     keyword: '',
     inputKeyword: '',
-    suggestedKeywords: ['月', '花', '春', '酒', '风', '雨', '雪', '秋', '江', '山', '水', '日', '云', '鸟', '心', '思', '故', '乡'],
+    suggestedKeywords: ['人', '不', '风', '山', '月', '无', '花', '春', '天', '一', '水', '日', '夜', '云', '上', '来', '江', '长'],
     filteredPoems: [],
     currentIndex: 0,
     totalCount: 0,
@@ -34,6 +34,12 @@ Page({
   selectSuggested(e) {
     const keyword = e.currentTarget.dataset.keyword;
     this.setData({ inputKeyword: keyword });
+    this.startMemorize();
+  },
+
+  randomKeyword() {
+    const randomK = poetry.getRandomKeyword();
+    this.setData({ inputKeyword: randomK });
     this.startMemorize();
   },
 
@@ -125,7 +131,9 @@ Page({
       filteredPoems: [],
       currentIndex: 0,
       totalCount: 0,
-      currentPoem: {}
+      currentPoem: {},
+      progress: 0,
+      nextTitle: ''
     });
   },
 

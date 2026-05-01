@@ -30,6 +30,8 @@
         >{{item}}</view>
       </view>
     </view>
+
+    <button class="random-btn" bindtap="randomKeyword">随机关键字</button>
   </view>
 
   <!-- 诗词浏览界面 -->
@@ -47,7 +49,7 @@
     <view class="poetry-card">
       <view class="poetry-content">
         <view wx:for="{{currentPoem.sentences}}" wx:key="index" class="poetry-sentence">
-          <text wx:for="{{item}}" wx:for-item="charObj" wx:for-index="charIdx" class="{{charObj.isKeyword ? 'keyword-char' : ''}} {{charObj.isPunctuation ? 'punctuation' : ''}}">{{charObj.char}}</text>
+          <text wx:for="{{item}}" wx:for-item="char" wx:key="charIdx" class="{{char.isKeyword ? 'keyword-char' : ''}} {{char.isPunctuation ? 'punctuation' : ''}}">{{char.char}}</text>
         </view>
       </view>
 
