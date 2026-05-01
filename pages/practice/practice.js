@@ -215,10 +215,10 @@ Page({
       }
     } else {
       audio.playWrong();
-      // 获取一个提示诗词（排除已使用过的）
+      // 获取一个提示诗词（排除已回答过的和已使用过的）
       const poemsWithKeyword = poetry.findPoemsWithKeyword(keyword);
-      const availablePoems = poemsWithKeyword.filter(p => !usedHintIds.includes(p.id));
-      const hintPoem = availablePoems.length > 0 ? availablePoems[0] : (poemsWithKeyword.length > 0 ? poemsWithKeyword[0] : null);
+      const availablePoems = poemsWithKeyword.filter(p => !usedPoemIds.includes(p.id) && !usedHintIds.includes(p.id));
+      const hintPoem = availablePoems.length > 0 ? availablePoems[0] : null;
 
       this.setData({
         showResult: true,
