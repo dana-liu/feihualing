@@ -212,6 +212,16 @@
   font-family: 'STKaiti', '楷体', serif;
 }
 
+.hint-btn {
+  margin-top: 20rpx;
+  padding: 16rpx 32rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30rpx;
+  color: #6b8cce;
+  font-size: 26rpx;
+}
+
 .action-section {
   text-align: center;
 }
