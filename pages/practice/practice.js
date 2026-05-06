@@ -1,8 +1,10 @@
+const app = getApp()
 const poetry = require('../../utils/poetry.js');
 const audio = require('../../utils/audio.js');
 
 Page({
   data: {
+    isDarkMode: true,
     keyword: '',
     inputKeyword: '',
     suggestedKeywords: [],
@@ -28,6 +30,7 @@ Page({
   },
 
   onLoad() {
+    this.setTheme(app.globalData.isDarkMode)
     const poems = poetry.poems;
     const keywordCount = {};
     poems.forEach(p => {
@@ -43,6 +46,14 @@ Page({
       suggestedKeywords: suggested,
       filteredPoems: []
     });
+  },
+
+  onShow() {
+    this.setTheme(app.globalData.isDarkMode)
+  },
+
+  setTheme(isDark) {
+    this.setData({ isDarkMode: isDark })
   },
 
   onKeywordInput(e) {

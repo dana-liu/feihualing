@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container {{isDarkMode ? 'theme-dark' : 'theme-warm'}}">
   <!-- 关键字输入界面 -->
   <view wx:if="{{!keyword}}" class="keyword-input-view">
     <view class="header">

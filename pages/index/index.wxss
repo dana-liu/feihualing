@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  padding: 60rpx 40rpx;
+  padding: 120rpx 40rpx 60rpx;
   box-sizing: border-box;
 }
 
@@ -49,24 +49,38 @@
 
 .subtitle {
   font-size: 26rpx;
-  color: #8b8b8b;
+  color: var(--text-muted);
   font-family: 'STKaiti', '楷体', serif;
   letter-spacing: 8rpx;
+}
+
+.theme-switch {
+  position: fixed;
+  top: 30rpx;
+  right: 30rpx;
+  transform: scale(0.65);
+  opacity: 0.7;
+  z-index: 100;
+}
+
+/* 暗色模式下开关背景变深 */
+.theme-dark .theme-switch {
+  opacity: 0.9;
+}
+
+.mode-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 32rpx;
+  padding: 40rpx;
+  display: flex;
+  align-items: center;
+  gap: 32rpx;
 }
 
 .mode-list {
   display: flex;
   flex-direction: column;
-  gap: 32rpx;
-}
-
-.mode-card {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 32rpx;
-  padding: 40rpx;
-  display: flex;
-  align-items: center;
   gap: 32rpx;
 }
 
@@ -86,13 +100,13 @@
 .mode-title {
   display: block;
   font-size: 36rpx;
-  color: #f0e6d3;
+  color: var(--text-primary);
   margin-bottom: 8rpx;
 }
 
 .mode-desc {
   font-size: 26rpx;
-  color: #8b8b8b;
+  color: var(--text-muted);
 }
 
 .footer {
@@ -102,6 +116,6 @@
 
 .quote {
   font-size: 24rpx;
-  color: #5a5a6e;
+  color: var(--text-muted);
   font-family: 'STKaiti', '楷体', serif;
 }

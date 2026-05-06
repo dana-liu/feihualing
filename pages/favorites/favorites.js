@@ -1,16 +1,24 @@
+const app = getApp()
 const poetry = require('../../utils/poetry.js');
 
 Page({
   data: {
+    isDarkMode: true,
     poems: []
   },
 
   onLoad() {
+    this.setTheme(app.globalData.isDarkMode)
     this.loadFavorites();
   },
 
   onShow() {
+    this.setTheme(app.globalData.isDarkMode)
     this.loadFavorites();
+  },
+
+  setTheme(isDark) {
+    this.setData({ isDarkMode: isDark })
   },
 
   loadFavorites() {

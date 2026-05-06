@@ -1,6 +1,36 @@
-page {
-  background: #1a1a2e;
-  color: #f0e6d3;
+/* 暖色主题变量 */
+.theme-warm {
+  --bg-gradient-start: #FFF8F0;
+  --bg-gradient-end: #FFE4C4;
+  --text-primary: #4A3728;
+  --text-muted: #8B7355;
+  --accent: #e6b85c;
+  --accent-secondary: #d4a056;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(74, 55, 40, 0.15);
+  --input-bg: rgba(255, 255, 255, 0.6);
+  --input-border: rgba(74, 55, 40, 0.2);
+}
+
+/* 暗色主题 - 保持最初配色，不使用 CSS 变量 */
+.theme-dark {
+  --bg-gradient-start: #1a1a2e;
+  --bg-gradient-end: #16213e;
+  --text-primary: #f0e6d3;
+  --text-muted: #8b8b8b;
+  --accent: #e6b85c;
+  --accent-secondary: #d4a056;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.2);
+  --input-bg: rgba(255, 255, 255, 0.1);
+  --input-border: rgba(255, 255, 255, 0.2);
+}
+
+/* 页面背景 */
+page,
+.container {
+  background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  color: var(--text-primary);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
 }
@@ -8,13 +38,12 @@ page {
 /* 通用容器 */
 .container {
   padding: 30rpx 40rpx;
-  min-height: 100vh;
 }
 
 /* 通用按钮样式 */
 .btn-primary {
-  background: linear-gradient(135deg, #e6b85c, #d4a056);
-  color: #1a1a2e;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  color: var(--text-primary);
   border: none;
   border-radius: 40rpx;
   padding: 24rpx 40rpx;
@@ -23,9 +52,9 @@ page {
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #f0e6d3;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
   border-radius: 40rpx;
   padding: 24rpx 40rpx;
   font-size: 28rpx;
@@ -34,45 +63,229 @@ page {
 /* 通用标签样式 */
 .tag {
   padding: 12rpx 24rpx;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 40rpx;
   font-size: 28rpx;
-  color: #f0e6d3;
+  color: var(--text-primary);
 }
 
 .tag-active {
   background: rgba(230, 184, 92, 0.3);
-  border-color: #e6b85c;
-  color: #e6b85c;
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* 通用输入框样式 */
 .input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 32rpx;
   padding: 24rpx 32rpx;
-  color: #f0e6d3;
+  color: var(--text-primary);
   font-size: 28rpx;
 }
 
 /* 通用卡片样式 */
 .card {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--card-bg);
   border-radius: 40rpx;
   padding: 40rpx;
 }
 
 /* 通用高亮文字 */
 .text-primary {
-  color: #e6b85c;
+  color: var(--accent);
 }
 
 .text-secondary {
-  color: #6b8cce;
+  color: var(--accent-secondary);
 }
 
 .text-muted {
+  color: var(--text-muted);
+}
+
+/* ==================== 暖色主题覆盖样式 ==================== */
+.theme-warm .back { color: #4A3728; }
+.theme-warm .subtitle { color: #8B7355; }
+.theme-warm .mode-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(74, 55, 40, 0.15);
+}
+.theme-warm .mode-title { color: #4A3728; }
+.theme-warm .mode-desc { color: #8B7355; }
+.theme-warm .quote { color: #8B7355; }
+
+/* 练习页面 */
+.theme-warm .keyword-box { color: #4A3728; }
+.theme-warm .dot {
+  background: rgba(74, 55, 40, 0.1);
+  border-color: rgba(74, 55, 40, 0.3);
+  color: rgba(74, 55, 40, 0.4);
+}
+.theme-warm .input-box {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(74, 55, 40, 0.2);
+}
+.theme-warm .poetry-input { color: #4A3728; }
+.theme-warm .input-placeholder { color: #8B7355; }
+.theme-warm .input-hint { color: #8B7355; }
+.theme-warm .input-tip { color: #8B7355; }
+.theme-warm .round-label { color: #8B7355; }
+.theme-warm .round-option {
+  background: rgba(74, 55, 40, 0.1);
+  border-color: rgba(74, 55, 40, 0.2);
+  color: #8B7355;
+}
+.theme-warm .round-option.selected {
+  background: rgba(230, 184, 92, 0.3);
+  border-color: #e6b85c;
+  color: #d4a056;
+}
+.theme-warm .result-title { color: #4A3728; }
+.theme-warm .result-poetry { color: #5D8A6B; }
+.theme-warm .result-hint { color: #8B7355; }
+.theme-warm .hint-tag { background: rgba(139, 115, 85, 0.3); }
+.theme-warm .hint-text { color: #8B7355; }
+.theme-warm .submit-btn { color: #4A3728; }
+.theme-warm .input-title { color: #4A3728; }
+.theme-warm .hint { color: #8B7355; }
+.theme-warm .suggested-title { color: #8B7355; }
+.theme-warm .keyword-tag {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(74, 55, 40, 0.2);
+  color: #4A3728;
+}
+.theme-warm .start-btn { color: #4A3728; }
+.theme-warm .start-btn[disabled] {
+  background: rgba(74, 55, 40, 0.1);
+  color: #8B7355;
+}
+.theme-warm .random-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(74, 55, 40, 0.2);
+  color: #8B7355;
+}
+.theme-warm .change-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(74, 55, 40, 0.2);
+  color: #8B7355;
+}
+.theme-warm .success-animation { background: rgba(74, 55, 40, 0.4); }
+.theme-warm .success-text { color: #4A3728; }
+.theme-warm .complete-modal { background: rgba(74, 55, 40, 0.4); }
+.theme-warm .modal-text { color: #4A3728; }
+.theme-warm .home-btn {
+  background: rgba(255, 255, 255, 0.3);
+  color: #4A3728;
+  border: 2px solid #4A3728;
+}
+
+/* 背诗页面 */
+.theme-warm .poetry-card {
+  background: rgba(255, 255, 255, 0.7);
+}
+.theme-warm .favorite-btn { color: #8B7355; }
+.theme-warm .poetry-line { color: #4A3728; }
+.theme-warm .punctuation { color: #8B7355; }
+.theme-warm .poetry-info {
+  border-top: 1px solid rgba(74, 55, 40, 0.1);
+}
+.theme-warm .poetry-title { color: #8B7355; }
+.theme-warm .poetry-author { color: #d4a056; }
+.theme-warm .nav-btn {
+  background: rgba(255, 255, 255, 0.8);
+  color: #4A3728;
+  border: 1px solid rgba(74, 55, 40, 0.2);
+}
+.theme-warm .nav-btn.next {
+  background: linear-gradient(135deg, #d4a056, #e6b85c);
+  color: #4A3728;
+  border: none;
+}
+.theme-warm .progress-title { color: #8B7355; }
+.theme-warm .progress-next { color: #8B7355; }
+.theme-warm .bar-track { background: rgba(74, 55, 40, 0.1); }
+.theme-warm .bar-fill { background: #d4a056; }
+.theme-warm .keyword-label { color: #8B7355; }
+.theme-warm .random-btn { color: #d4a056; }
+
+/* 诗词库 */
+.theme-warm .search-input {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(74, 55, 40, 0.2);
+  color: #4A3728;
+}
+.theme-warm .search-input::placeholder { color: #8B7355; }
+.theme-warm .filter-label { color: #8B7355; }
+.theme-warm .filter-option {
+  background: rgba(74, 55, 40, 0.1);
+  border: 1px solid rgba(74, 55, 40, 0.2);
+  color: #8B7355;
+}
+.theme-warm .filter-option.selected {
+  background: rgba(230, 184, 92, 0.3);
+  border-color: #e6b85c;
+  color: #d4a056;
+}
+.theme-warm .poem-item { background: rgba(255, 255, 255, 0.7); }
+.theme-warm .poem-title { color: #4A3728; }
+.theme-warm .poem-author { color: #d4a056; }
+.theme-warm .poem-preview { color: #8B7355; }
+.theme-warm .count { color: #8B7355; }
+
+/* 收藏页面 */
+.theme-warm .title { color: #4A3728; }
+.theme-warm .empty-icon { color: #8B7355; }
+.theme-warm .empty-text { color: #8B7355; }
+.theme-warm .empty-hint { color: #8B7355; }
+
+/* 详情页 */
+.theme-warm .favorite-btn { color: #8B7355; }
+.theme-warm .keyword-section {
+  background: rgba(255, 255, 255, 0.7);
+}
+.theme-warm .keyword-title { color: #8B7355; }
+.theme-warm .keyword-tag {
+  background: rgba(74, 55, 40, 0.1);
+  border: 1px solid rgba(74, 55, 40, 0.2);
+  color: #4A3728;
+}
+.theme-warm .keyword-tag.selected {
+  background: rgba(230, 184, 92, 0.3);
+  border-color: #e6b85c;
+  color: #e6b85c;
+}
+
+/* ==================== 暗色主题覆盖样式 ==================== */
+/* 暗色模式下恢复原始硬编码颜色 */
+.theme-dark .back { color: #f0e6d3; }
+.theme-dark .count { color: #8b8b8b; }
+.theme-dark .title { color: #f0e6d3; }
+.theme-dark .empty-icon { color: #5a5a6e; }
+.theme-dark .empty-text { color: #8b8b8b; }
+.theme-dark .empty-hint { color: #5a5a6e; }
+
+.theme-dark .search-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f0e6d3;
+}
+.theme-dark .search-input::placeholder { color: #5a5a6e; }
+.theme-dark .filter-label { color: #8b8b8b; }
+.theme-dark .filter-option {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #8b8b8b;
 }
+.theme-dark .filter-option.selected {
+  background: rgba(107, 140, 206, 0.3);
+  border-color: #6b8cce;
+  color: #6b8cce;
+}
+
+.theme-dark .poem-item { background: #2a2a4a; }
+.theme-dark .poem-title { color: #f0e6d3; }
+.theme-dark .poem-author { color: #6b8cce; }
+.theme-dark .poem-preview { color: #8b8b8b; }

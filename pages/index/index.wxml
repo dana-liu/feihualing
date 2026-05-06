@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container {{isDarkMode ? 'theme-dark' : 'theme-warm'}}">
   <view class="header">
     <view class="title-wrapper">
       <text class="title-fei">飞</text>
@@ -7,6 +7,7 @@
     </view>
     <text class="subtitle">传承千年的诗词雅趣</text>
   </view>
+  <switch class="theme-switch" checked="{{isDarkMode}}" bindchange="onThemeChange" color="#e6b85c"/>
 
   <view class="mode-list">
     <view class="mode-card" bindtap="goToPractice">

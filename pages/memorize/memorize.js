@@ -1,7 +1,9 @@
+const app = getApp()
 const poetry = require('../../utils/poetry.js');
 
 Page({
   data: {
+    isDarkMode: true,
     keyword: '',
     inputKeyword: '',
     suggestedKeywords: ['人', '不', '风', '山', '月', '无', '花', '春', '天', '一', '水', '日', '夜', '云', '上', '来', '江', '长'],
@@ -16,6 +18,7 @@ Page({
   },
 
   onLoad() {
+    this.setTheme(app.globalData.isDarkMode)
     // 加载收藏
     const favorites = wx.getStorageSync('favorites') || [];
     this.setData({
@@ -23,6 +26,14 @@ Page({
       totalCount: 0,
       favorites: favorites
     });
+  },
+
+  onShow() {
+    this.setTheme(app.globalData.isDarkMode)
+  },
+
+  setTheme(isDark) {
+    this.setData({ isDarkMode: isDark })
   },
 
   onKeywordInput(e) {

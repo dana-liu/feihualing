@@ -1,7 +1,9 @@
+const app = getApp()
 const poetry = require('../../utils/poetry.js');
 
 Page({
   data: {
+    isDarkMode: true,
     poems: [],
     filteredPoems: [],
     searchText: '',
@@ -10,10 +12,19 @@ Page({
   },
 
   onLoad() {
+    this.setTheme(app.globalData.isDarkMode)
     this.setData({
       poems: poetry.poems,
       filteredPoems: poetry.poems
     });
+  },
+
+  onShow() {
+    this.setTheme(app.globalData.isDarkMode)
+  },
+
+  setTheme(isDark) {
+    this.setData({ isDarkMode: isDark })
   },
 
   onSearch(e) {

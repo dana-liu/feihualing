@@ -1,7 +1,6 @@
 .container {
   padding: 30rpx 40rpx;
   min-height: 100vh;
-  background: #1a1a2e;
 }
 
 .header {
@@ -13,12 +12,12 @@
 
 .back {
   font-size: 32rpx;
-  color: #f0e6d3;
+  color: var(--text-primary);
 }
 
 .count {
   font-size: 28rpx;
-  color: #8b8b8b;
+  color: var(--text-muted);
 }
 
 .search-bar {
@@ -26,16 +25,16 @@
 }
 
 .search-input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 32rpx;
   padding: 24rpx 32rpx;
-  color: #f0e6d3;
+  color: var(--text-primary);
   font-size: 28rpx;
 }
 
 .search-input::placeholder {
-  color: #5a5a6e;
+  color: var(--text-muted);
 }
 
 .filter-bar {
@@ -50,7 +49,7 @@
 
 .filter-label {
   font-size: 26rpx;
-  color: #8b8b8b;
+  color: var(--text-muted);
 }
 
 .filter-options {
@@ -61,11 +60,11 @@
 
 .filter-option {
   padding: 8rpx 20rpx;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 24rpx;
   font-size: 24rpx;
-  color: #8b8b8b;
+  color: var(--text-muted);
 }
 
 .filter-option.selected {
@@ -79,7 +78,7 @@
 }
 
 .poem-item {
-  background: #2a2a4a;
+  background: var(--card-bg);
   border-radius: 24rpx;
   padding: 30rpx;
   margin-bottom: 24rpx;
@@ -98,18 +97,18 @@
 
 .poem-title {
   font-size: 30rpx;
-  color: #f0e6d3;
+  color: var(--text-primary);
   font-weight: bold;
 }
 
 .poem-author {
   font-size: 24rpx;
-  color: #6b8cce;
+  color: var(--accent-secondary);
 }
 
 .poem-preview {
   font-size: 26rpx;
-  color: #8b8b8b;
+  color: var(--text-muted);
   line-height: 1.6;
   font-family: 'STKaiti', '楷体', serif;
 }

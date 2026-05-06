@@ -1,7 +1,9 @@
+const app = getApp()
 const poetry = require('../../utils/poetry.js');
 
 Page({
   data: {
+    isDarkMode: true,
     poem: null,
     sentences: [],
     isFavorited: false,
@@ -10,6 +12,7 @@ Page({
   },
 
   onLoad(options) {
+    this.setTheme(app.globalData.isDarkMode)
     const { id } = options;
     const poem = poetry.poems.find(p => p.id == id);
 
@@ -35,6 +38,14 @@ Page({
       isFavorited: isFavorited,
       favorites: favorites
     });
+  },
+
+  onShow() {
+    this.setTheme(app.globalData.isDarkMode)
+  },
+
+  setTheme(isDark) {
+    this.setData({ isDarkMode: isDark })
   },
 
   processSentences(content, highlightKeyword = '') {
