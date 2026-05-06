@@ -1371,7 +1371,6 @@ const poems = [
     ]
   },
   {
-  {
     "id": 41,
     "title": "行路难",
     "author": "李白",
