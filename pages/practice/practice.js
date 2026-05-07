@@ -34,19 +34,8 @@ Page({
 
   onLoad() {
     this.setTheme(app.globalData.isDarkMode)
-    const poems = poetry.poems;
-    const keywordCount = {};
-    poems.forEach(p => {
-      p.keywords.forEach(k => {
-        keywordCount[k] = (keywordCount[k] || 0) + 1;
-      });
-    });
-    const suggested = Object.entries(keywordCount)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 18)
-      .map(([kw]) => kw);
     this.setData({
-      suggestedKeywords: suggested,
+      suggestedKeywords: ['人', '山', '风', '月', '花', '春', '秋', '雨', '江', '云', '日', '夜', '水', '天', '白', '青', '黄', '红', '柳', '梅', '竹', '菊', '兰', '酒', '梦', '愁', '思', '情', '东', '西', '南', '北', '一', '二', '三', '千', '万'],
       filteredPoems: []
     });
   },
