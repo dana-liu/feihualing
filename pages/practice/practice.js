@@ -2,6 +2,19 @@ const app = getApp()
 const poetry = require('../../utils/poetry.js');
 const audio = require('../../utils/audio.js');
 
+// 提取包含关键字的完整诗句作为提示
+function extractHintSentences(content, keyword) {
+  // 按句末标点分割句子
+  const sentences = content.split(/(?<=[。！？])/).filter(s => s.trim());
+  for (let i = 0; i < sentences.length; i++) {
+    if (sentences[i].includes(keyword)) {
+      return sentences[i];
+    }
+  }
+  // 如果没找到，返回第一句
+  return sentences.length > 0 ? sentences[0] : '';
+}
+
 Page({
   data: {
     isDarkMode: true,
@@ -13,9 +26,9 @@ Page({
     suggestedKeywords: [],
     filteredPoems: [],
     currentRound: 1,
-    totalRounds: 2,
-    selectedRounds: 2,
-    roundOptions: [2, 5, 10],
+    totalRounds: 10,
+    selectedRounds: 10,
+    roundOptions: [5, 10, 15],
     inputText: '',
     showResult: false,
     isCorrect: false,
@@ -201,7 +214,7 @@ Page({
           showResult: true,
           isCorrect: false,
           matchedPoetry: '这句诗已经答过了，换一句试试',
-          hintPoetry: hintPoem ? hintPoem.content : '',
+          hintPoetry: hintPoem ? extractHintSentences(hintPoem.content, keyword) : '',
           wrongAnswer: true
         });
         this.submitting = false;
@@ -272,7 +285,7 @@ Page({
         showResult: true,
         isCorrect: false,
         matchedPoetry: '回答错误',
-        hintPoetry: hintPoem ? hintPoem.content : '',
+        hintPoetry: hintPoem ? extractHintSentences(hintPoem.content, keyword) : '',
         showHint: false,
         wrongAnswer: true
       });
