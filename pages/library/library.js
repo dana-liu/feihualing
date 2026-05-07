@@ -10,7 +10,7 @@ Page({
     filteredPoems: [],
     displayPoems: [],
     searchText: '',
-    dynastyOptions: ['全部', '唐', '宋', '元', '明', '清'],
+    dynastyOptions: ['全部', '唐', '宋', '元', '明', '清', '南唐', '现代', '汉', '南北朝'],
     selectedDynasty: '全部',
     page: 1,
     hasMore: true,
