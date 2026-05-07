@@ -1,23 +1,45 @@
 <view class="container {{isDarkMode ? 'theme-dark' : 'theme-warm'}}">
+  <!-- 背景装饰 -->
+  <view class="ink-wash-bg"></view>
+
   <view class="header">
-    <text class="back" bindtap="goBack">← 返回</text>
-    <text class="title">我的收藏</text>
-    <text class="count">{{poems.length}} 首</text>
+    <view class="back-btn" bindtap="goBack">
+      <text class="back-icon">←</text>
+      <text class="back-text">返回</text>
+    </view>
+    <view class="title-wrapper">
+      <view class="title-seal">藏</view>
+      <text class="title-text">我的收藏</text>
+    </view>
+    <view class="count-badge">{{poems.length}} 首</view>
   </view>
 
   <view class="empty-tip" wx:if="{{poems.length === 0}}">
-    <text class="empty-icon">☆</text>
+    <view class="empty-icon-wrapper">
+      <text class="empty-icon">☆</text>
+    </view>
     <text class="empty-text">暂无收藏诗词</text>
-    <text class="empty-hint">在背诗模式中点击☆收藏诗词</text>
+    <text class="empty-hint">在诗词详情页点击★收藏诗词</text>
   </view>
 
   <view class="poem-list" wx:else>
-    <view class="poem-item" wx:for="{{poems}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
-      <view class="poem-header">
-        <text class="poem-title">《{{item.title}}》</text>
-        <text class="poem-author">{{item.dynasty}} · {{item.author}}</text>
+    <view
+      class="poem-item"
+      wx:for="{{poems}}"
+      wx:key="id"
+      bindtap="goToDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="item-decoration left"></view>
+      <view class="item-content">
+        <view class="item-header">
+          <text class="poem-title">《{{item.title}}》</text>
+          <view class="author-badge">{{item.dynasty}}</view>
+        </view>
+        <text class="poem-author">{{item.author}}</text>
+        <text class="poem-preview">{{item.content}}</text>
       </view>
-      <text class="poem-preview">{{item.content}}</text>
+      <view class="item-arrow">›</view>
     </view>
   </view>
 </view>

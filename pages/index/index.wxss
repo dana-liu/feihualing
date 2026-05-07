@@ -1,121 +1,465 @@
+/* ============================================
+   飞花令首页 - 水墨丹青风格
+   ============================================ */
+
+page,
 .container {
   min-height: 100vh;
-  padding: 120rpx 40rpx 60rpx;
-  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 80rpx;
+/* ==================== 暖色主题 ==================== */
+.theme-warm {
+  --bg-start: #FDF6E3;
+  --bg-end: #F5E6D3;
+  --text-primary: #3D2914;
+  --text-secondary: #6B4D32;
+  --text-muted: #8B7355;
+  --accent-gold: #D4A574;
+  --accent-cinnabar: #C73E3A;
+  --accent-jade: #5D8A6B;
+  --card-bg: rgba(255, 253, 245, 0.9);
+  --card-border: rgba(139, 115, 85, 0.2);
+  --icon-bg-1: linear-gradient(135deg, #C73E3A, #A62E2A);
+  --icon-bg-2: linear-gradient(135deg, #8B6914, #6B4D0A);
+  --icon-bg-3: linear-gradient(135deg, #2D5A3D, #1A3D28);
+  --icon-bg-4: linear-gradient(135deg, #D4A574, #B8864A);
+  --ink-wash: rgba(61, 41, 20, 0.03);
+  --shadow-color: rgba(61, 41, 20, 0.1);
 }
 
-.title-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 16rpx;
+/* ==================== 暗色主题 ==================== */
+.theme-dark {
+  --bg-start: #1A1614;
+  --bg-end: #2D2420;
+  --text-primary: #E8DFD5;
+  --text-secondary: #C4B8A8;
+  --text-muted: #8B7B6B;
+  --accent-gold: #D4A574;
+  --accent-cinnabar: #C73E3A;
+  --accent-jade: #6B9B7B;
+  --card-bg: rgba(45, 36, 32, 0.8);
+  --card-border: rgba(212, 165, 116, 0.15);
+  --icon-bg-1: linear-gradient(135deg, #C73E3A, #8B2A26);
+  --icon-bg-2: linear-gradient(135deg, #D4A574, #9B7344);
+  --icon-bg-3: linear-gradient(135deg, #4A7B5A, #2D5A3D);
+  --icon-bg-4: linear-gradient(135deg, #D4A574, #B8864A);
+  --ink-wash: rgba(232, 223, 213, 0.05);
+  --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
-.title-fei {
-  font-size: 80rpx;
-  font-family: 'STKaiti', '楷体', serif;
-  background: linear-gradient(135deg, #e6b85c, #d4a056);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 4rpx 8rpx rgba(230, 184, 92, 0.3);
+.container {
+  background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  padding: 0 0 60rpx;
 }
 
-.title-hua {
-  font-size: 80rpx;
-  font-family: 'STKaiti', '楷体', serif;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 4rpx 8rpx rgba(255, 154, 158, 0.3);
-  margin: 0 4rpx;
+/* ==================== 背景装饰 ==================== */
+.ink-wash-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 20%, var(--ink-wash) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, var(--ink-wash) 0%, transparent 50%);
+  z-index: 0;
 }
 
-.title-ling {
-  font-size: 80rpx;
-  font-family: 'STKuiti', '楷体', serif;
-  background: linear-gradient(135deg, #6b8cce, #5a7ab8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 4rpx 8rpx rgba(107, 140, 206, 0.3);
+.floating-petals {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
 }
 
-.subtitle {
-  font-size: 26rpx;
-  color: var(--text-muted);
-  font-family: 'STKaiti', '楷体', serif;
-  letter-spacing: 8rpx;
+.petal {
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  background: var(--accent-gold);
+  border-radius: 50% 0 50% 50%;
+  opacity: 0.15;
+  animation: float 20s infinite ease-in-out;
 }
 
+.petal-1 {
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 25s;
+}
+
+.petal-2 {
+  left: 50%;
+  animation-delay: -8s;
+  animation-duration: 20s;
+}
+
+.petal-3 {
+  left: 80%;
+  animation-delay: -15s;
+  animation-duration: 28s;
+}
+
+.petal-4 {
+  left: 25%;
+  animation-delay: -3s;
+  animation-duration: 22s;
+}
+
+.petal-5 {
+  left: 65%;
+  animation-delay: -10s;
+  animation-duration: 26s;
+}
+
+.petal-6 {
+  left: 40%;
+  animation-delay: -18s;
+  animation-duration: 24s;
+}
+
+.petal-7 {
+  left: 90%;
+  animation-delay: -6s;
+  animation-duration: 30s;
+}
+
+.petal-8 {
+  left: 5%;
+  animation-delay: -12s;
+  animation-duration: 21s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-100rpx) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.15;
+  }
+  90% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* ==================== 主题切换 ==================== */
 .theme-switch {
   position: fixed;
   top: 30rpx;
   right: 30rpx;
-  transform: scale(0.65);
-  opacity: 0.7;
+  transform: scale(0.7);
   z-index: 100;
+  opacity: 0.8;
 }
 
-/* 暗色模式下开关背景变深 */
+.theme-warm .theme-switch {
+  --switch-checked-color: #D4A574;
+  --switch-track-color: rgba(139, 115, 85, 0.3);
+}
+
 .theme-dark .theme-switch {
+  --switch-checked-color: #D4A574;
+  --switch-track-color: rgba(212, 165, 116, 0.3);
   opacity: 0.9;
 }
 
-.mode-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 32rpx;
-  padding: 40rpx;
+/* ==================== 标题区域 ==================== */
+.hero-section {
+  position: relative;
+  z-index: 1;
+  padding: 140rpx 40rpx 60rpx;
+  text-align: center;
+}
+
+.seal-badge {
+  display: inline-block;
+  padding: 8rpx 24rpx;
+  background: var(--accent-cinnabar);
+  color: #fff;
+  font-size: 22rpx;
+  font-family: 'STKaiti', '楷体', serif;
+  border-radius: 4rpx;
+  letter-spacing: 4rpx;
+  margin-bottom: 30rpx;
+  transform: rotate(-3deg);
+  box-shadow: 0 4rpx 12rpx rgba(199, 62, 58, 0.3);
+}
+
+.title-container {
   display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-bottom: 30rpx;
+  animation: titleReveal 1.2s ease-out;
+}
+
+@keyframes titleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.char {
+  font-size: 100rpx;
+  font-family: 'STKaiti', '楷体', serif;
+  margin: 0 10rpx;
+  position: relative;
+}
+
+.char-1 {
+  background: linear-gradient(135deg, #C73E3A 0%, #8B2A26 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: charPop 0.8s ease-out 0.2s both;
+}
+
+.char-2 {
+  background: linear-gradient(135deg, #D4A574 0%, #B8864A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: charPop 0.8s ease-out 0.4s both;
+}
+
+.char-3 {
+  background: linear-gradient(135deg, #3D5A4A 0%, #2D4A3D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: charPop 0.8s ease-out 0.6s both;
+}
+
+@keyframes charPop {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.subtitle-container {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 32rpx;
+  gap: 16rpx;
+  animation: fadeIn 1s ease-out 0.8s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dash {
+  color: var(--text-muted);
+  font-size: 24rpx;
+}
+
+.subtitle-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  font-family: 'STKaiti', '楷体', serif;
+  letter-spacing: 6rpx;
+}
+
+/* ==================== 卡片区域 ==================== */
+.cards-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 32rpx;
 }
 
 .mode-list {
   display: flex;
   flex-direction: column;
-  gap: 32rpx;
+  gap: 28rpx;
 }
 
-.mode-icon {
-  width: 100rpx;
-  height: 100rpx;
+.mode-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 24rpx;
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx var(--shadow-color);
+  animation: cardSlideIn 0.6s ease-out both;
+}
+
+.card-1 { animation-delay: 0.3s; }
+.card-2 { animation-delay: 0.45s; }
+.card-3 { animation-delay: 0.6s; }
+.card-4 { animation-delay: 0.75s; }
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.card-hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 30rpx var(--shadow-color);
+}
+
+/* 左侧装饰条 */
+.card-decoration {
+  position: absolute;
+}
+
+.left-decoration {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6rpx;
+  border-radius: 24rpx 0 0 24rpx;
+}
+
+.card-1 .left-decoration { background: linear-gradient(180deg, #C73E3A, #8B2A26); }
+.card-2 .left-decoration { background: linear-gradient(180deg, #D4A574, #9B7344); }
+.card-3 .left-decoration { background: linear-gradient(180deg, #3D5A4A, #2D4A3D); }
+.card-4 .left-decoration { background: linear-gradient(180deg, #D4A574, #B8864A); }
+
+.bottom-decoration {
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+}
+
+/* 卡片内容 */
+.card-content {
+  display: flex;
+  align-items: center;
+  gap: 28rpx;
+  flex: 1;
+}
+
+.icon-circle {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
+
+.card-1 .icon-circle { background: var(--icon-bg-1); }
+.card-2 .icon-circle { background: var(--icon-bg-2); }
+.card-3 .icon-circle { background: var(--icon-bg-3); }
+.card-4 .icon-circle { background: var(--icon-bg-4); }
 
 .icon-text {
-  font-size: 48rpx;
+  font-size: 44rpx;
+  color: #fff;
+  font-family: 'STKaiti', '楷体', serif;
+  font-weight: bold;
 }
 
-.mode-title {
+.text-content {
+  flex: 1;
+}
+
+.card-title {
   display: block;
-  font-size: 36rpx;
+  font-size: 34rpx;
   color: var(--text-primary);
-  margin-bottom: 8rpx;
+  font-family: 'STKaiti', '楷体', serif;
+  font-weight: bold;
+  margin-bottom: 6rpx;
 }
 
-.mode-desc {
-  font-size: 26rpx;
-  color: var(--text-muted);
-}
-
-.footer {
-  text-align: center;
-  margin-top: 120rpx;
-}
-
-.quote {
+.card-desc {
+  display: block;
   font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-bottom: 4rpx;
+}
+
+.card-note {
+  display: block;
+  font-size: 22rpx;
   color: var(--text-muted);
   font-family: 'STKaiti', '楷体', serif;
+  font-style: italic;
+}
+
+.card-arrow {
+  font-size: 48rpx;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-left: 16rpx;
+}
+
+/* ==================== 底部诗句 ==================== */
+.footer-section {
+  position: relative;
+  z-index: 1;
+  padding: 80rpx 40rpx 40rpx;
+  text-align: center;
+}
+
+.poetry-scroll {
+  margin-bottom: 20rpx;
+}
+
+.poetry-text {
+  font-size: 26rpx;
+  color: var(--text-muted);
+  font-family: 'STKaiti', '楷体', serif;
+  letter-spacing: 4rpx;
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.seal-small {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: var(--accent-cinnabar);
+  border: 2rpx solid var(--accent-cinnabar);
+  border-radius: 8rpx;
+  transform: rotate(5deg);
+  opacity: 0.6;
 }

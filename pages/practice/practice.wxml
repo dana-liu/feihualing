@@ -1,116 +1,248 @@
 <view class="container {{isDarkMode ? 'theme-dark' : 'theme-warm'}}">
-  <!-- 关键字输入界面 -->
+  <!-- 背景装饰 -->
+  <view class="ink-wash-bg"></view>
+  <view class="paper-texture"></view>
+
+  <!-- ==================== 关键字输入界面 ==================== -->
   <view wx:if="{{!keyword}}" class="keyword-input-view">
+    <!-- 头部 -->
     <view class="header">
-      <text class="back" bindtap="goBack">← 返回</text>
-    </view>
-    <view class="input-title">请输入一个关键字</view>
-
-    <view class="input-box">
-      <input
-        class="keyword-input"
-        maxlength="1"
-        bindinput="onKeywordInput"
-        value="{{inputKeyword}}"
-      />
-      <button class="start-btn" bindtap="startPractice" disabled="{{!inputKeyword}}">开始</button>
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon">←</text>
+      </view>
+      <view class="page-title">飞花令</view>
+      <view class="placeholder"></view>
     </view>
 
-    <view class="round-selector">
-      <text class="round-label">练习轮数：</text>
-      <view class="round-options">
-        <view
-          wx:for="{{roundOptions}}"
-          wx:key="index"
-          class="round-option {{selectedRounds === item ? 'selected' : ''}}"
-          bindtap="selectRound"
-          data-round="{{item}}"
-        >{{item}}轮</view>
+    <!-- 主内容 -->
+    <view class="main-content">
+      <!-- 标题装饰 -->
+      <view class="title-section">
+        <view class="title-flourish left"></view>
+        <text class="main-title">个人练习</text>
+        <view class="title-flourish right"></view>
+      </view>
+
+      <text class="section-hint">请输入关键字</text>
+
+      <!-- 关键字输入展示 -->
+      <view class="input-showcase">
+        <view class="seal-box" bindtap="focusInput">
+          <view class="seal-inner">
+            <text class="seal-char">{{inputKeyword || '待'}}</text>
+          </view>
+          <view class="seal-border"></view>
+          <text class="seal-label">关键字</text>
+        </view>
+        <input
+          class="hidden-input"
+          maxlength="1"
+          type="text"
+          bindinput="onKeywordInput"
+          value="{{inputValue}}"
+          focus="{{inputFocused}}"
+        />
+      </view>
+
+      <!-- 开始按钮 -->
+      <button
+        class="start-btn {{inputKeyword ? 'active' : ''}}"
+        bindtap="startPractice"
+        disabled="{{!inputKeyword}}"
+      >
+        <text class="btn-text">{{inputKeyword ? '开始练习' : '等待输入'}}</text>
+        <view class="btn-shine" wx:if="{{inputKeyword}}"></view>
+      </button>
+
+      <!-- 轮数选择 -->
+      <view class="round-section">
+        <text class="round-label">练习轮数</text>
+        <view class="round-options">
+          <view
+            wx:for="{{roundOptions}}"
+            wx:key="index"
+            class="round-option {{selectedRounds === item ? 'selected' : ''}}"
+            bindtap="selectRound"
+            data-round="{{item}}"
+          >
+            <text class="option-num">{{item}}</text>
+            <text class="option-unit">轮</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 热门关键字 -->
+      <view class="hot-section">
+        <view class="hot-header">
+          <view class="hot-line"></view>
+          <text class="hot-title">热门关键字</text>
+          <view class="hot-line"></view>
+        </view>
+        <view class="hot-tags">
+          <view
+            wx:for="{{suggestedKeywords}}"
+            wx:key="index"
+            class="hot-tag"
+            bindtap="selectSuggested"
+            data-keyword="{{item}}"
+          >{{item}}</view>
+        </view>
+      </view>
+
+      <!-- 随机按钮 -->
+      <view class="random-section">
+        <view class="divider">
+          <view class="divider-line"></view>
+          <text class="divider-text">或</text>
+          <view class="divider-line"></view>
+        </view>
+        <button class="random-btn" bindtap="randomKeyword">
+          <text class="random-icon">☯</text>
+          <text class="random-text">随机关键字</text>
+        </button>
       </view>
     </view>
-
-    <view class="hint">输入包含关键字的诗词</view>
-
-    <view class="suggested-keywords">
-      <view class="suggested-title">热门关键字</view>
-      <view class="keyword-tags">
-        <view
-          wx:for="{{suggestedKeywords}}"
-          wx:key="index"
-          class="keyword-tag"
-          bindtap="selectSuggested"
-          data-keyword="{{item}}"
-        >{{item}}</view>
-      </view>
-    </view>
-
-    <button class="random-btn" bindtap="randomKeyword">随机关键字</button>
   </view>
 
-  <!-- 练习界面 -->
+  <!-- ==================== 练习界面 ==================== -->
   <view wx:else class="practice-view">
-    <view class="header">
-      <text class="back" bindtap="goBack">← 返回</text>
-      <text class="progress">第 {{currentRound}}/{{totalRounds}} 轮</text>
+    <!-- 头部 -->
+    <view class="practice-header">
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon">←</text>
+      </view>
+      <view class="progress-seal">
+        <text class="seal-num">{{currentRound}}</text>
+        <text class="seal-div">/</text>
+        <text class="seal-total">{{totalRounds}}</text>
+      </view>
+      <view class="placeholder"></view>
     </view>
 
-    <view class="keyword-show">
-      <text class="keyword-label">当前关键字：</text>
-      <text class="keyword-value">{{keyword}}</text>
+    <!-- 关键字展示 -->
+    <view class="keyword-display">
+      <view class="keyword-seal">
+        <view class="seal-outer">
+          <text class="seal-keyword">{{keyword}}</text>
+        </view>
+        <view class="seal-decoration top"></view>
+        <view class="seal-decoration bottom"></view>
+      </view>
     </view>
 
-    <view class="progress-dots">
-      <block wx:for="{{totalRounds}}" wx:key="index">
-        <view class="dot {{roundStatus[index] ? 'completed' : ''}}">✓</view>
-      </block>
+    <!-- 进度指示 -->
+    <view class="progress-section">
+      <view class="progress-dots">
+        <view
+          wx:for="{{totalRounds}}"
+          wx:key="index"
+          class="progress-dot {{roundStatus[index] ? 'done' : ''}}"
+        >
+          <text wx:if="{{roundStatus[index]}}" class="dot-check">✓</text>
+        </view>
+      </view>
     </view>
 
+    <!-- 输入区域 -->
     <view class="input-section">
-      <view class="input-box">
-        <input class="poetry-input" placeholder="请输入连续两句诗..." placeholder-class="input-placeholder" bindinput="onInput" value="{{inputText}}"/>
+      <view class="input-card">
+        <textarea
+          class="poetry-input"
+          placeholder="输入包含关键字的诗词..."
+          placeholder-class="input-placeholder"
+          bindinput="onInput"
+          value="{{inputText}}"
+          maxlength="50"
+        />
       </view>
       <text class="input-hint">输入连续的两句诗（8-30字）</text>
-        <text class="input-tip">目前仅支持诗词库中的诗词</text>
     </view>
 
+    <!-- 结果展示 -->
     <view class="result-section" wx:if="{{showResult}}">
-      <view class="result-box {{isCorrect ? 'correct' : 'wrong'}}">
-        <text class="result-icon">{{isCorrect ? '✓' : '✗'}}</text>
-        <view class="result-info">
-          <text class="result-title">{{isCorrect ? '回答正确！' : matchedPoetry}}</text>
+      <view class="result-card {{isCorrect ? 'correct' : 'wrong'}}">
+        <view class="result-badge {{isCorrect ? 'correct' : 'wrong'}}">
+          <text>{{isCorrect ? '◎' : '✕'}}</text>
+        </view>
+        <view class="result-content">
+          <text class="result-title">{{isCorrect ? '回答正确' : '回答错误'}}</text>
           <text class="result-poetry" wx:if="{{isCorrect}}">{{matchedPoetry}}</text>
-          <text class="result-hint" wx:if="{{!isCorrect && showHint && hintPoetry}}">{{hintPoetry}}</text>
+          <text class="result-hint" wx:if="{{!isCorrect && showHint && hintPoetry}}">参考：{{hintPoetry}}</text>
         </view>
-        <view class="hint-tag" wx:if="{{!isCorrect && !showHint}}" bindtap="showHint">
-          <text class="hint-text">？</text>
-        </view>
-      </view>
-    </view>
-
-    <!-- 答对动效 -->
-    <view wx:if="{{showSuccessAnimation}}" class="success-animation">
-      <view class="success-content">
-        <view class="success-icon">🎉</view>
-        <view class="success-text">{{successMessage}}</view>
-      </view>
-    </view>
-
-    <!-- 完成弹窗 -->
-    <view wx:if="{{showCompleteModal}}" class="complete-modal">
-      <view class="modal-content">
-        <view class="modal-icon">🎊</view>
-        <view class="modal-text">{{successMessage}}</view>
-        <view class="modal-btns">
-          <button class="modal-btn continue-btn" bindtap="changeKeyword">继续</button>
-          <button class="modal-btn home-btn" bindtap="goBack">返回首页</button>
+        <view
+          class="hint-toggle {{!isCorrect && !showHint ? 'show' : 'hide'}}"
+          bindtap="showHint"
+        >
+          <text>?</text>
         </view>
       </view>
     </view>
 
+    <!-- 操作按钮 -->
     <view class="action-section">
-      <button class="submit-btn" bindtap="submitAnswer" disabled="{{!inputText || isSubmitting || wrongAnswer}}">提交答案</button>
+      <button
+        class="submit-btn {{!inputText || isSubmitting || wrongAnswer ? 'disabled' : ''}}"
+        bindtap="submitAnswer"
+        disabled="{{!inputText || isSubmitting || wrongAnswer}}"
+      >
+        <text>提交答案</text>
+      </button>
+      <button class="change-btn" bindtap="changeKeyword">
+        <text>换个关键字</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- ==================== 随机动效 ==================== -->
+  <view class="random-overlay {{isRandomAnimating ? 'active' : ''}}">
+    <view class="ink-texture-bg"></view>
+    <view class="deco-lines">
+      <view class="deco-line"></view>
+      <view class="deco-line"></view>
+    </view>
+    <view class="corner-deco top-left"></view>
+    <view class="corner-deco top-right"></view>
+    <view class="corner-deco bottom-left"></view>
+    <view class="corner-deco bottom-right"></view>
+
+    <view class="char-showcase">
+      <view class="outer-ring"></view>
+      <view class="outer-ring dashed"></view>
+      <view class="char-container">
+        <text class="main-char {{isRandomAnimating ? 'scroll' : 'final'}}">{{inputKeyword}}</text>
+      </view>
     </view>
 
-    <button class="change-btn" bindtap="changeKeyword">换个关键字</button>
+    <view class="hint-text">{{isRandomAnimating ? '随机选取中' : ''}}</view>
+    <view class="hint-dots" wx:if="{{isRandomAnimating}}">
+      <view class="hint-dot"></view>
+      <view class="hint-dot"></view>
+      <view class="hint-dot"></view>
+    </view>
+  </view>
+
+  <!-- ==================== 成功动效 ==================== -->
+  <view wx:if="{{showSuccessAnimation}}" class="success-overlay">
+    <view class="success-popup">
+      <text class="success-icon">✦</text>
+      <text class="success-text">{{successMessage}}</text>
+    </view>
+  </view>
+
+  <!-- ==================== 完成弹窗 ==================== -->
+  <view wx:if="{{showCompleteModal}}" class="modal-overlay">
+    <view class="modal-card">
+      <view class="modal-seal">令</view>
+      <text class="modal-title">恭喜完成</text>
+      <text class="modal-text">{{successMessage}}</text>
+      <view class="modal-actions">
+        <button class="modal-btn primary" bindtap="changeKeyword">
+          <text>继续练习</text>
+        </button>
+        <button class="modal-btn secondary" bindtap="goBack">
+          <text>返回</text>
+        </button>
+      </view>
+    </view>
   </view>
 </view>

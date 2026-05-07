@@ -4,8 +4,11 @@ const poetry = require('../../utils/poetry.js');
 Page({
   data: {
     isDarkMode: true,
+    isRandomAnimating: false,
     keyword: '',
     inputKeyword: '',
+    inputValue: '',
+    inputFocused: false,
     suggestedKeywords: ['人', '不', '风', '山', '月', '无', '花', '春', '天', '一', '水', '日', '夜', '云', '上', '来', '江', '长'],
     filteredPoems: [],
     currentIndex: 0,
@@ -41,10 +44,14 @@ Page({
     // 只允许输入一个汉字
     const chineseChar = value.charAt(value.length - 1);
     if (/[一-龥]/.test(chineseChar)) {
-      this.setData({ inputKeyword: chineseChar });
+      this.setData({ inputKeyword: chineseChar, inputValue: '', inputFocused: false });
     } else if (value === '') {
-      this.setData({ inputKeyword: '' });
+      this.setData({ inputKeyword: '', inputValue: '' });
     }
+  },
+
+  focusInput() {
+    this.setData({ inputFocused: true });
   },
 
   selectSuggested(e) {
@@ -54,9 +61,40 @@ Page({
   },
 
   randomKeyword() {
-    const randomK = poetry.getRandomKeyword();
-    this.setData({ inputKeyword: randomK });
-    this.startMemorize();
+    this.setData({ isRandomAnimating: true });
+
+    // 优先从热门关键字中选取
+    const hotKeywords = this.data.suggestedKeywords;
+    const allKeywords = hotKeywords.length > 0 ? hotKeywords : [];
+
+    if (allKeywords.length === 0) {
+      wx.showToast({ title: '暂无可用关键字', icon: 'none' });
+      this.setData({ isRandomAnimating: false });
+      return;
+    }
+
+    let spinCount = 0;
+    const spinInterval = setInterval(() => {
+      const randomK = allKeywords[Math.floor(Math.random() * allKeywords.length)];
+      this.setData({ inputKeyword: randomK });
+      spinCount++;
+
+      // 快速滚动后确定最终关键字
+      if (spinCount >= 18) {
+        clearInterval(spinInterval);
+        // 确定最终关键字（从热门中选）
+        const finalKeyword = allKeywords[Math.floor(Math.random() * allKeywords.length)];
+        this.setData({ inputKeyword: finalKeyword });
+
+        // 等待 stamp 动画完成后进入练习
+        setTimeout(() => {
+          this.setData({ isRandomAnimating: false });
+          setTimeout(() => {
+            this.startMemorize();
+          }, 500);
+        }, 400);
+      }
+    }, 70);
   },
 
   startMemorize() {

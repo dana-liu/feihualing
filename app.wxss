@@ -1,35 +1,42 @@
-/* 暖色主题变量 */
+/* ==================== 水墨丹青主题变量 ==================== */
+/* 暖色主题 - 温暖的古风水墨风格 */
 .theme-warm {
-  --bg-gradient-start: #FFF8F0;
-  --bg-gradient-end: #FFE4C4;
-  --text-primary: #4A3728;
+  --bg-start: #FDF6E3;
+  --bg-end: #F5E6D3;
+  --text-primary: #3D2914;
+  --text-secondary: #6B4D32;
   --text-muted: #8B7355;
-  --accent: #e6b85c;
-  --accent-secondary: #d4a056;
-  --card-bg: rgba(255, 255, 255, 0.7);
-  --card-border: rgba(74, 55, 40, 0.15);
-  --input-bg: rgba(255, 255, 255, 0.6);
-  --input-border: rgba(74, 55, 40, 0.2);
+  --accent-gold: #D4A574;
+  --accent-cinnabar: #C73E3A;
+  --accent-jade: #5D8A6B;
+  --card-bg: rgba(255, 253, 245, 0.9);
+  --card-border: rgba(139, 115, 85, 0.2);
+  --input-bg: rgba(255, 253, 245, 0.8);
+  --input-border: rgba(139, 115, 85, 0.2);
+  --shadow-color: rgba(61, 41, 20, 0.1);
 }
 
-/* 暗色主题 - 保持最初配色，不使用 CSS 变量 */
+/* 暗色主题 - 保持最初配色 */
 .theme-dark {
-  --bg-gradient-start: #1a1a2e;
-  --bg-gradient-end: #16213e;
-  --text-primary: #f0e6d3;
-  --text-muted: #8b8b8b;
-  --accent: #e6b85c;
-  --accent-secondary: #d4a056;
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --card-border: rgba(255, 255, 255, 0.2);
-  --input-bg: rgba(255, 255, 255, 0.1);
-  --input-border: rgba(255, 255, 255, 0.2);
+  --bg-start: #1A1614;
+  --bg-end: #2D2420;
+  --text-primary: #E8DFD5;
+  --text-secondary: #C4B8A8;
+  --text-muted: #8B7B6B;
+  --accent-gold: #D4A574;
+  --accent-cinnabar: #C73E3A;
+  --accent-jade: #6B9B7B;
+  --card-bg: rgba(45, 36, 32, 0.8);
+  --card-border: rgba(212, 165, 116, 0.15);
+  --input-bg: rgba(45, 36, 32, 0.6);
+  --input-border: rgba(212, 165, 116, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 /* 页面背景 */
 page,
 .container {
-  background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
   color: var(--text-primary);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
@@ -42,7 +49,7 @@ page,
 
 /* 通用按钮样式 */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-cinnabar));
   color: var(--text-primary);
   border: none;
   border-radius: 40rpx;
@@ -72,8 +79,8 @@ page,
 
 .tag-active {
   background: rgba(230, 184, 92, 0.3);
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
 }
 
 /* 通用输入框样式 */
@@ -95,11 +102,11 @@ page,
 
 /* 通用高亮文字 */
 .text-primary {
-  color: var(--accent);
+  color: var(--accent-gold);
 }
 
 .text-secondary {
-  color: var(--accent-secondary);
+  color: var(--accent-jade);
 }
 
 .text-muted {
@@ -107,15 +114,7 @@ page,
 }
 
 /* ==================== 暖色主题覆盖样式 ==================== */
-.theme-warm .back { color: #4A3728; }
-.theme-warm .subtitle { color: #8B7355; }
-.theme-warm .mode-card {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(74, 55, 40, 0.15);
-}
-.theme-warm .mode-title { color: #4A3728; }
-.theme-warm .mode-desc { color: #8B7355; }
-.theme-warm .quote { color: #8B7355; }
+/* 首页样式已移至 index.wxss */
 
 /* 练习页面 */
 .theme-warm .keyword-box { color: #4A3728; }

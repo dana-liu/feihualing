@@ -1,112 +1,237 @@
+/* ============================================
+   飞花令 - 诗词详情页面 - 水墨丹青风格
+   ============================================ */
+
+page,
 .container {
-  padding: 30rpx 40rpx;
   min-height: 100vh;
+  position: relative;
 }
 
+.container {
+  padding: 0;
+}
+
+/* ==================== 背景装饰 ==================== */
+.ink-wash-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, var(--ink-wash, rgba(212, 165, 116, 0.03)) 0%, transparent 60%);
+  z-index: 0;
+}
+
+.theme-dark .ink-wash-bg {
+  --ink-wash: rgba(212, 165, 116, 0.05);
+}
+
+/* ==================== 头部 ==================== */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40rpx;
+  padding: 40rpx;
+  position: relative;
+  z-index: 1;
 }
 
-.back {
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 20rpx;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 40rpx;
+}
+
+.back-btn:active {
+  transform: scale(0.95);
+}
+
+.back-icon {
   font-size: 32rpx;
-  color: #f0e6d3;
+  color: var(--text-primary);
+}
+
+.back-text {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  font-family: 'STKaiti', '楷体', serif;
 }
 
 .favorite-btn {
-  font-size: 48rpx;
-  color: #5a5a6e;
-  padding: 10rpx;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 56rpx;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
 }
 
 .favorite-btn.favorited {
-  color: #e6b85c;
+  color: var(--accent-gold);
 }
 
-/* 诗词卡片 */
+.favorite-btn:active {
+  transform: scale(1.2);
+}
+
+/* ==================== 诗词卡片 ==================== */
 .poetry-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 40rpx;
-  padding: 60rpx 40rpx;
-  margin-bottom: 50rpx;
-  min-height: 400rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: relative;
+  z-index: 1;
+  margin: 0 40rpx 40rpx;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 30rpx;
+  padding: 60rpx 40px 50rpx;
+  box-shadow: 0 8rpx 40rpx var(--shadow-color);
+  overflow: hidden;
+}
+
+.card-top-deco {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8rpx;
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-cinnabar), var(--accent-jade));
 }
 
 .poetry-content {
   text-align: center;
-  margin-bottom: 40rpx;
+  margin-bottom: 50rpx;
+  animation: contentReveal 0.8s ease-out;
+}
+
+@keyframes contentReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .poetry-sentence {
   display: block;
-  line-height: 2;
-  letter-spacing: 4rpx;
+  line-height: 2.4;
+  letter-spacing: 6rpx;
 }
 
 .keyword-char {
-  color: #e6b85c;
+  color: var(--accent-cinnabar);
   font-weight: bold;
+  font-size: 1.15em;
+  text-shadow: 0 0 10rpx rgba(199, 62, 58, 0.3);
 }
 
 .punctuation {
-  color: #8b8b8b;
+  color: var(--text-muted);
+  margin: 0 2rpx;
+}
+
+.card-divider {
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+  margin-bottom: 30rpx;
 }
 
 .poetry-info {
   text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 40rpx;
 }
 
 .poetry-title {
   display: block;
-  font-size: 36rpx;
-  color: #8b8b8b;
-  margin-bottom: 8rpx;
+  font-size: 40rpx;
+  color: var(--text-primary);
+  font-family: 'STKaiti', '楷体', serif;
+  font-weight: bold;
+  margin-bottom: 12rpx;
 }
 
 .poetry-author {
-  font-size: 30rpx;
-  color: #6b8cce;
-}
-
-/* 关键字区域 */
-.keyword-section {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 40rpx;
-  padding: 40rpx;
-}
-
-.keyword-title {
-  font-size: 28rpx;
-  color: #8b8b8b;
   display: block;
-  margin-bottom: 30rpx;
+  font-size: 26rpx;
+  color: var(--text-muted);
+  font-family: 'STKaiti', '楷体', serif;
+}
+
+.card-bottom-deco {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100rpx;
+  height: 6rpx;
+  background: var(--accent-gold);
+  border-radius: 3rpx 3rpx 0 0;
+}
+
+/* ==================== 关键字区域 ==================== */
+.keyword-section {
+  position: relative;
+  z-index: 1;
+  margin: 0 40rpx;
+  padding: 30rpx;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx var(--shadow-color);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 26rpx;
+  color: var(--text-primary);
+  font-family: 'STKaiti', '楷体', serif;
+  font-weight: bold;
+}
+
+.section-hint {
+  font-size: 20rpx;
+  color: var(--text-muted);
+  font-family: 'STKaiti', '楷体', serif;
 }
 
 .keyword-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 20rpx;
+  gap: 16rpx;
 }
 
 .keyword-tag {
   padding: 12rpx 24rpx;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--card-bg);
+  border: 1rpx solid var(--card-border);
   border-radius: 40rpx;
   font-size: 28rpx;
-  color: #f0e6d3;
+  color: var(--text-primary);
   font-family: 'STKaiti', '楷体', serif;
+  transition: all 0.3s ease;
 }
 
 .keyword-tag.selected {
-  background: rgba(230, 184, 92, 0.3);
-  border-color: #e6b85c;
-  color: #e6b85c;
+  background: linear-gradient(135deg, var(--accent-cinnabar), #8B2A26);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4rpx 12rpx rgba(199, 62, 58, 0.3);
+}
+
+.keyword-tag:active:not(.selected) {
+  transform: scale(0.95);
 }

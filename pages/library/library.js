@@ -1,21 +1,30 @@
 const app = getApp()
 const poetry = require('../../utils/poetry.js');
 
+const PAGE_SIZE = 20;
+
 Page({
   data: {
     isDarkMode: true,
     poems: [],
     filteredPoems: [],
+    displayPoems: [],
     searchText: '',
     dynastyOptions: ['全部', '唐', '宋', '元', '明', '清'],
-    selectedDynasty: '全部'
+    selectedDynasty: '全部',
+    page: 1,
+    hasMore: true,
+    loading: false
   },
 
   onLoad() {
     this.setTheme(app.globalData.isDarkMode)
     this.setData({
       poems: poetry.poems,
-      filteredPoems: poetry.poems
+      filteredPoems: poetry.poems,
+      displayPoems: poetry.poems.slice(0, PAGE_SIZE),
+      page: 1,
+      hasMore: poetry.poems.length > PAGE_SIZE
     });
   },
 
@@ -59,7 +68,36 @@ Page({
       );
     }
 
-    this.setData({ filteredPoems: filtered, searchText });
+    this.setData({
+      filteredPoems: filtered,
+      displayPoems: filtered.slice(0, PAGE_SIZE),
+      page: 1,
+      hasMore: filtered.length > PAGE_SIZE,
+      searchText
+    });
+  },
+
+  onScrollToLower() {
+    this.loadMore();
+  },
+
+  loadMore() {
+    const { displayPoems, filteredPoems, page, hasMore, loading } = this.data;
+
+    if (!hasMore || loading) return;
+
+    this.setData({ loading: true });
+
+    const nextPage = page + 1;
+    const endIndex = nextPage * PAGE_SIZE;
+    const newPoems = filteredPoems.slice(0, endIndex);
+
+    this.setData({
+      displayPoems: newPoems,
+      page: nextPage,
+      hasMore: endIndex < filteredPoems.length,
+      loading: false
+    });
   },
 
   goBack() {

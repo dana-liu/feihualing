@@ -1,81 +1,199 @@
 <view class="container {{isDarkMode ? 'theme-dark' : 'theme-warm'}}">
-  <!-- 关键字输入界面 -->
+  <!-- 背景装饰 -->
+  <view class="ink-wash-bg"></view>
+  <view class="paper-texture"></view>
+
+  <!-- ==================== 关键字输入界面 ==================== -->
   <view wx:if="{{!keyword}}" class="keyword-input-view">
+    <!-- 头部 -->
     <view class="header">
-      <text class="back" bindtap="goBack">← 返回</text>
-    </view>
-    <view class="input-title">请输入一个关键字</view>
-
-    <view class="input-box">
-      <input
-        class="keyword-input"
-        maxlength="1"
-        bindinput="onKeywordInput"
-        value="{{inputKeyword}}"
-      />
-      <button class="start-btn" bindtap="startMemorize" disabled="{{!inputKeyword}}">开始</button>
-    </view>
-
-    <view class="hint">选择一个关键字，系统将展示包含该字的诗词</view>
-
-    <view class="suggested-keywords">
-      <view class="suggested-title">热门关键字</view>
-      <view class="keyword-tags">
-        <view
-          wx:for="{{suggestedKeywords}}"
-          wx:key="index"
-          class="keyword-tag"
-          bindtap="selectSuggested"
-          data-keyword="{{item}}"
-        >{{item}}</view>
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon">←</text>
       </view>
+      <view class="page-title">飞花令</view>
+      <view class="placeholder"></view>
     </view>
 
-    <button class="random-btn" bindtap="randomKeyword">随机关键字</button>
-  </view>
-
-  <!-- 诗词浏览界面 -->
-  <view wx:else class="poetry-view">
-    <view class="header">
-      <text class="back" bindtap="goBack">← 返回</text>
-      <text class="progress">{{currentIndex + 1}}/{{totalCount}} 首</text>
-    </view>
-
-    <view class="keyword-show">
-      <text class="keyword-label">当前关键字：</text>
-      <text class="keyword-value">{{keyword}}</text>
-    </view>
-
-    <view class="poetry-card">
-      <view class="card-header">
-        <text class="poetry-title">《{{currentPoem.title}}》</text>
-        <text class="favorite-btn {{isFavorited ? 'favorited' : ''}}" bindtap="toggleFavorite"> {{isFavorited ? '★' : '☆'}}</text>
+    <!-- 主内容 -->
+    <view class="main-content">
+      <!-- 标题装饰 -->
+      <view class="title-section">
+        <view class="title-flourish left"></view>
+        <text class="main-title">诗词赏析</text>
+        <view class="title-flourish right"></view>
       </view>
 
-      <view class="poetry-content">
-        <view wx:for="{{currentPoem.sentences}}" wx:key="index" class="poetry-sentence">
-          <text wx:for="{{item}}" wx:for-item="char" wx:key="charIdx" class="{{char.isKeyword ? 'keyword-char' : ''}} {{char.isPunctuation ? 'punctuation' : ''}}">{{char.char}}</text>
+      <text class="section-hint">请输入关键字</text>
+
+      <!-- 关键字输入展示 -->
+      <view class="input-showcase">
+        <view class="seal-box" bindtap="focusInput">
+          <view class="seal-inner">
+            <text class="seal-char">{{inputKeyword || '待'}}</text>
+          </view>
+          <view class="seal-border"></view>
+          <text class="seal-label">关键字</text>
+        </view>
+        <input
+          class="hidden-input"
+          maxlength="1"
+          type="text"
+          bindinput="onKeywordInput"
+          value="{{inputValue}}"
+          focus="{{inputFocused}}"
+        />
+      </view>
+
+      <!-- 开始按钮 -->
+      <button
+        class="start-btn {{inputKeyword ? 'active' : ''}}"
+        bindtap="startMemorize"
+        disabled="{{!inputKeyword}}"
+      >
+        <text class="btn-text">{{inputKeyword ? '开始赏析' : '等待输入'}}</text>
+        <view class="btn-shine" wx:if="{{inputKeyword}}"></view>
+      </button>
+
+      <!-- 热门关键字 -->
+      <view class="hot-section">
+        <view class="hot-header">
+          <view class="hot-line"></view>
+          <text class="hot-title">热门关键字</text>
+          <view class="hot-line"></view>
+        </view>
+        <view class="hot-tags">
+          <view
+            wx:for="{{suggestedKeywords}}"
+            wx:key="index"
+            class="hot-tag"
+            bindtap="selectSuggested"
+            data-keyword="{{item}}"
+          >{{item}}</view>
         </view>
       </view>
 
-      <view class="poetry-info">
-        <text class="poetry-author">{{currentPoem.dynasty}} · {{currentPoem.author}}</text>
+      <!-- 随机按钮 -->
+      <view class="random-section">
+        <view class="divider">
+          <view class="divider-line"></view>
+          <text class="divider-text">或</text>
+          <view class="divider-line"></view>
+        </view>
+        <button class="random-btn" bindtap="randomKeyword">
+          <text class="random-icon">☯</text>
+          <text class="random-text">随机关键字</text>
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- ==================== 诗词浏览界面 ==================== -->
+  <view wx:else class="poetry-view">
+    <!-- 头部 -->
+    <view class="practice-header">
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon">←</text>
+      </view>
+      <view class="progress-seal">
+        <text class="seal-num">{{currentIndex + 1}}</text>
+        <text class="seal-div">/</text>
+        <text class="seal-total">{{totalCount}}</text>
+      </view>
+      <view class="placeholder"></view>
+    </view>
+
+    <!-- 关键字展示 -->
+    <view class="keyword-display">
+      <view class="keyword-seal">
+        <view class="seal-outer">
+          <text class="seal-keyword">{{keyword}}</text>
+        </view>
+        <view class="seal-decoration top"></view>
+        <view class="seal-decoration bottom"></view>
       </view>
     </view>
 
-    <view class="action-btns">
-      <button class="nav-btn prev" bindtap="prevPoem" disabled="{{currentIndex === 0}}">← 上一首</button>
-      <button class="nav-btn next" bindtap="nextPoem" disabled="{{currentIndex >= totalCount - 1}}">下一首 →</button>
+    <!-- 诗词卡片 -->
+    <view class="poetry-card">
+      <view class="card-header">
+        <view class="poetry-meta">
+          <text class="poetry-title">《{{currentPoem.title}}》</text>
+          <text class="poetry-author">{{currentPoem.dynasty}} · {{currentPoem.author}}</text>
+        </view>
+        <view class="favorite-btn {{isFavorited ? 'favorited' : ''}}" bindtap="toggleFavorite">
+          <text>{{isFavorited ? '★' : '☆'}}</text>
+        </view>
+      </view>
+
+      <view class="poetry-scroll-area">
+        <view class="poetry-content">
+          <view wx:for="{{currentPoem.sentences}}" wx:key="index" class="poetry-sentence">
+            <text
+              wx:for="{{item}}"
+              wx:for-item="char"
+              wx:key="charIdx"
+              class="{{char.isKeyword ? 'keyword-char' : ''}} {{char.isPunctuation ? 'punctuation' : ''}}"
+            >{{char.char}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="card-footer-deco"></view>
     </view>
 
+    <!-- 导航按钮 -->
+    <view class="action-btns">
+      <button class="nav-btn {{currentIndex === 0 ? 'disabled' : ''}}" bindtap="prevPoem" disabled="{{currentIndex === 0}}">
+        <text class="nav-icon">←</text>
+        <text>上一首</text>
+      </button>
+      <button class="nav-btn next {{currentIndex >= totalCount - 1 ? 'disabled' : ''}}" bindtap="nextPoem" disabled="{{currentIndex >= totalCount - 1}}">
+        <text>下一首</text>
+        <text class="nav-icon">→</text>
+      </button>
+    </view>
+
+    <!-- 进度条 -->
     <view class="progress-bar">
       <text class="progress-title">{{currentPoem.title}}</text>
-      <text class="progress-next">{{nextTitle}}</text>
+      <text class="progress-next" wx:if="{{nextTitle}}">下一首：{{nextTitle}}</text>
       <view class="bar-track">
         <view class="bar-fill" style="width: {{progress}}%;"></view>
       </view>
     </view>
 
-    <button class="change-btn" bindtap="changeKeyword">换个关键字</button>
+    <!-- 切换按钮 -->
+    <button class="change-btn" bindtap="changeKeyword">
+      <text class="change-icon">⟳</text>
+      <text>换个关键字</text>
+    </button>
+  </view>
+
+  <!-- ==================== 随机动效 ==================== -->
+  <view class="random-overlay {{isRandomAnimating ? 'active' : ''}}">
+    <view class="ink-texture-bg"></view>
+    <view class="deco-lines">
+      <view class="deco-line"></view>
+      <view class="deco-line"></view>
+    </view>
+    <view class="corner-deco top-left"></view>
+    <view class="corner-deco top-right"></view>
+    <view class="corner-deco bottom-left"></view>
+    <view class="corner-deco bottom-right"></view>
+
+    <view class="char-showcase">
+      <view class="outer-ring"></view>
+      <view class="outer-ring dashed"></view>
+      <view class="char-container">
+        <text class="main-char {{isRandomAnimating ? 'scroll' : 'final'}}">{{inputKeyword}}</text>
+      </view>
+    </view>
+
+    <view class="hint-text">{{isRandomAnimating ? '随机选取中' : ''}}</view>
+    <view class="hint-dots" wx:if="{{isRandomAnimating}}">
+      <view class="hint-dot"></view>
+      <view class="hint-dot"></view>
+      <view class="hint-dot"></view>
+    </view>
   </view>
 </view>

@@ -1,57 +1,113 @@
 <view class="container {{isDarkMode ? 'theme-dark' : 'theme-warm'}}">
-  <view class="header">
-    <view class="title-wrapper">
-      <text class="title-fei">飞</text>
-      <text class="title-hua">花</text>
-      <text class="title-ling">令</text>
-    </view>
-    <text class="subtitle">传承千年的诗词雅趣</text>
+  <!-- 装饰性背景元素 -->
+  <view class="ink-wash-bg"></view>
+  <view class="floating-petals">
+    <view class="petal petal-1"></view>
+    <view class="petal petal-2"></view>
+    <view class="petal petal-3"></view>
+    <view class="petal petal-4"></view>
+    <view class="petal petal-5"></view>
+    <view class="petal petal-6"></view>
+    <view class="petal petal-7"></view>
+    <view class="petal petal-8"></view>
   </view>
-  <switch class="theme-switch" checked="{{isDarkMode}}" bindchange="onThemeChange" color="#e6b85c"/>
 
-  <view class="mode-list">
-    <view class="mode-card" bindtap="goToPractice">
-      <view class="mode-icon" style="background: linear-gradient(135deg, #e6b85c, #d4a056);">
-        <text class="icon-text">🎤</text>
-      </view>
-      <view class="mode-info">
-        <text class="mode-title">个人练习</text>
-        <text class="mode-desc">语音/打字输入，背诵检测</text>
-      </view>
+  <!-- 主题切换 -->
+  <switch class="theme-switch" checked="{{isDarkMode}}" bindchange="onThemeChange" color="#D4A574"/>
+
+  <!-- 标题区域 -->
+  <view class="hero-section">
+    <view class="seal-badge">飞花令</view>
+    <view class="title-container">
+      <text class="char char-1">飞</text>
+      <text class="char char-2">花</text>
+      <text class="char char-3">令</text>
     </view>
-
-    <view class="mode-card" bindtap="goToMemorize">
-      <view class="mode-icon" style="background: linear-gradient(135deg, #6b8cce, #5a7ab8);">
-        <text class="icon-text">📖</text>
-      </view>
-      <view class="mode-info">
-        <text class="mode-title">背诗模式</text>
-        <text class="mode-desc">浏览记忆，系统展示诗句</text>
-      </view>
-    </view>
-
-    <view class="mode-card" bindtap="goToLibrary">
-      <view class="mode-icon" style="background: linear-gradient(135deg, #7eb89b, #6aa584);">
-        <text class="icon-text">📚</text>
-      </view>
-      <view class="mode-info">
-        <text class="mode-title">诗词库</text>
-        <text class="mode-desc">唐诗三百首 · 宋词精选</text>
-      </view>
-    </view>
-
-    <view class="mode-card" bindtap="goToFavorites">
-      <view class="mode-icon" style="background: linear-gradient(135deg, #e6b85c, #e6855c);">
-        <text class="icon-text">★</text>
-      </view>
-      <view class="mode-info">
-        <text class="mode-title">我的收藏</text>
-        <text class="mode-desc">收藏的诗词</text>
-      </view>
+    <view class="subtitle-container">
+      <text class="dash">——</text>
+      <text class="subtitle-text">传承千年的诗词雅趣</text>
+      <text class="dash">——</text>
     </view>
   </view>
 
-  <view class="footer">
-    <text class="quote">春风得意马蹄疾，一日看尽长安花</text>
+  <!-- 功能卡片区域 -->
+  <view class="cards-section">
+    <view class="mode-list">
+      <!-- 个人练习 -->
+      <view class="mode-card card-1" bindtap="goToPractice" hover-class="card-hover">
+        <view class="card-decoration left-decoration"></view>
+        <view class="card-content">
+          <view class="icon-circle">
+            <text class="icon-text">吟</text>
+          </view>
+          <view class="text-content">
+            <text class="card-title">个人练习</text>
+            <text class="card-desc">打字输入 · 背诵检测</text>
+            <text class="card-note">挥墨纸上，诗意心中</text>
+          </view>
+        </view>
+        <view class="card-arrow">›</view>
+        <view class="card-decoration bottom-decoration"></view>
+      </view>
+
+      <!-- 背诗模式 -->
+      <view class="mode-card card-2" bindtap="goToMemorize" hover-class="card-hover">
+        <view class="card-decoration left-decoration"></view>
+        <view class="card-content">
+          <view class="icon-circle">
+            <text class="icon-text">诵</text>
+          </view>
+          <view class="text-content">
+            <text class="card-title">背诗模式</text>
+            <text class="card-desc">浏览记忆 · 系统展示</text>
+            <text class="card-note">春风化雨，润物无声</text>
+          </view>
+        </view>
+        <view class="card-arrow">›</view>
+        <view class="card-decoration bottom-decoration"></view>
+      </view>
+
+      <!-- 诗词库 -->
+      <view class="mode-card card-3" bindtap="goToLibrary" hover-class="card-hover">
+        <view class="card-decoration left-decoration"></view>
+        <view class="card-content">
+          <view class="icon-circle">
+            <text class="icon-text">阅</text>
+          </view>
+          <view class="text-content">
+            <text class="card-title">诗词库</text>
+            <text class="card-desc">唐诗三百首 · 宋词精选</text>
+            <text class="card-note">书卷多情，锦绣华章</text>
+          </view>
+        </view>
+        <view class="card-arrow">›</view>
+        <view class="card-decoration bottom-decoration"></view>
+      </view>
+
+      <!-- 我的收藏 -->
+      <view class="mode-card card-4" bindtap="goToFavorites" hover-class="card-hover">
+        <view class="card-decoration left-decoration"></view>
+        <view class="card-content">
+          <view class="icon-circle">
+            <text class="icon-text">藏</text>
+          </view>
+          <view class="text-content">
+            <text class="card-title">我的收藏</text>
+            <text class="card-desc">心之所爱 · 诗意收藏</text>
+            <text class="card-note">收藏美好，诗意相伴</text>
+          </view>
+        </view>
+        <view class="card-arrow">›</view>
+        <view class="card-decoration bottom-decoration"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部诗句 -->
+  <view class="footer-section">
+    <view class="poetry-scroll">
+      <text class="poetry-text">春风得意马蹄疾，一日看尽长安花</text>
+    </view>
+    <view class="seal-small">令</view>
   </view>
 </view>

@@ -1,24 +1,46 @@
 <view class="container {{isDarkMode ? 'theme-dark' : 'theme-warm'}}">
+  <!-- 背景装饰 -->
+  <view class="ink-wash-bg"></view>
+
   <view class="header">
-    <text class="back" bindtap="goBack">← 返回</text>
-    <text class="favorite-btn {{isFavorited ? 'favorited' : ''}}" bindtap="toggleFavorite">{{isFavorited ? '★' : '☆'}}</text>
+    <view class="back-btn" bindtap="goBack">
+      <text class="back-icon">←</text>
+      <text class="back-text">返回</text>
+    </view>
+    <view class="favorite-btn {{isFavorited ? 'favorited' : ''}}" bindtap="toggleFavorite">
+      <text>{{isFavorited ? '★' : '☆'}}</text>
+    </view>
   </view>
 
   <view class="poetry-card">
+    <view class="card-top-deco"></view>
+
     <view class="poetry-content">
       <view wx:for="{{sentences}}" wx:key="index" class="poetry-sentence">
-        <text wx:for="{{item}}" wx:for-item="char" wx:key="charIdx" class="{{char.isHighlight ? 'keyword-char' : ''}} {{char.isPunctuation ? 'punctuation' : ''}}">{{char.char}}</text>
+        <text
+          wx:for="{{item}}"
+          wx:for-item="char"
+          wx:key="charIdx"
+          class="{{char.isHighlight ? 'keyword-char' : ''}} {{char.isPunctuation ? 'punctuation' : ''}}"
+        >{{char.char}}</text>
       </view>
     </view>
+
+    <view class="card-divider"></view>
 
     <view class="poetry-info">
       <text class="poetry-title">《{{poem.title}}》</text>
       <text class="poetry-author">{{poem.dynasty}} · {{poem.author}}</text>
     </view>
+
+    <view class="card-bottom-deco"></view>
   </view>
 
   <view class="keyword-section">
-    <text class="keyword-title">点击关键字高亮</text>
+    <view class="section-header">
+      <text class="section-title">关键字</text>
+      <text class="section-hint">点击高亮</text>
+    </view>
     <view class="keyword-tags">
       <text
         wx:for="{{poem.keywords}}"
