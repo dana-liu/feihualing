@@ -1,8 +1,7 @@
 const poems = [
   {
     "id": 1,
-    "title": "静夜思",
-    "author": "李白",
+    "title": "静夜思""author": "李白": "李白",
     "dynasty": "唐",
     "content": "床前明月光，疑是地上霜。举头望明月，低头思故乡。",
     "keywords": [
@@ -259,7 +258,7 @@ const poems = [
   {
     "id": 11,
     "title": "凉州词",
-    "author": "王翰",
+    "author": "王之涣",
     "dynasty": "唐",
     "content": "黄河远上白云间，一片孤城万仞山。羌笛何须怨杨柳，春风不度玉门关。",
     "keywords": [
